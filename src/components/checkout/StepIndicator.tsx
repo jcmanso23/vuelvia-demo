@@ -1,4 +1,4 @@
-const STEPS = ["Tus cintas", "Cómo las envías", "Tus datos", "Revisar y pagar"];
+const STEPS = ["Tu pedido", "Tus datos", "Extras y pago"];
 
 export function StepIndicator({ step }: { step: number }) {
   return (

@@ -8,7 +8,7 @@ export default function DigitalizarPage() {
         Digitalizar mis cintas
       </h1>
       <p className="mx-auto mt-2 max-w-md text-center text-sm text-gris-tinta/60">
-        4 pasos, un pago único. Sin necesidad de crear una cuenta.
+        3 pasos, un pago único. Sin necesidad de crear una cuenta.
       </p>
       <div className="mt-10">
         <Suspense fallback={<p className="text-center text-gris-tinta/60">Cargando…</p>}>

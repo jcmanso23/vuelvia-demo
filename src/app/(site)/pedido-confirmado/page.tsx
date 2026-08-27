@@ -13,8 +13,9 @@ const embalaje = [
   "No pegues adhesivos directamente sobre las cintas.",
   "Protege especialmente las cintas rotas.",
   "Añade el número de tu pedido en un papel dentro de la caja.",
+  "Revisa que ninguna cinta tenga manchas blancas, polvo o aspecto algodonoso (posible moho). Si ves algo así, escríbenos antes de cerrar la caja.",
   "Cierra bien la caja.",
-  "Entrégala en Correos, o espera la recogida si la elegiste.",
+  "Entrégala en el punto elegido, o espera la recogida si la solicitaste.",
 ];
 
 function Confirmation() {
@@ -62,7 +63,11 @@ function Confirmation() {
           {formatEuros(order.pricing.total)}
         </p>
         <p className="mt-1 text-sm font-semibold text-gris-tinta">
-          Elegiste: {order.inboundMethod === "correos" ? "Entrega en Correos" : "Recogida en domicilio"}
+          Elegiste: {order.inboundMethod === "correos" ? "Lo llevo a un punto" : "Recogida en domicilio"}
+        </p>
+        <p className="mt-3 text-xs text-gris-tinta/50">
+          Cuando terminemos, te avisaremos por email con tu enlace de
+          descarga. Tus cintas originales volverán a tu domicilio.
         </p>
       </div>
 

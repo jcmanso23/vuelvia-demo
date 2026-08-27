@@ -47,14 +47,15 @@ const pasos = [
   },
   {
     numero: "7",
-    titulo: "Preparamos tu memoria USB",
-    descripcion: "Tus vídeos se entregan siempre en una memoria USB, lista para reproducir.",
+    titulo: "Te enviamos tu enlace de descarga",
+    descripcion:
+      "En cuanto están listos, recibes un enlace privado para ver y descargar tus vídeos. ¿Quieres además una copia en USB? Puedes añadirla como extra.",
   },
   {
     numero: "8",
-    titulo: "Te devolvemos todo a domicilio",
+    titulo: "Te devolvemos tus originales",
     descripcion:
-      "Recibes tus cintas originales junto con tu memoria USB. Tus recuerdos vuelven a casa.",
+      "Tus cintas originales vuelven a tu domicilio. Tus recuerdos, en dos formatos: el de siempre y el digital.",
   },
 ];
 
@@ -87,8 +88,8 @@ export default function ComoFuncionaPage() {
       <div className="mt-12 grid gap-8 sm:grid-cols-2">
         <div className="overflow-hidden rounded-3xl">
           <Photo
-            src="/images/proceso-cinta-a-usb.webp"
-            alt="El recorrido de una cinta VHS hasta convertirse en una memoria USB Vuelvia"
+            src="/images/entrega-repartidor-paquete.webp"
+            alt="El trayecto de tus cintas: las envías, las recibimos, y te devolvemos tus originales"
             width={1600}
             height={1200}
             className="h-full w-full object-cover"

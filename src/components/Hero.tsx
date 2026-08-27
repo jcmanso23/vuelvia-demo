@@ -10,25 +10,24 @@ export function Hero() {
             Tus recuerdos <span className="text-azul-principal">merecen volver.</span>
           </h1>
           <p className="mt-5 max-w-md text-lg text-gris-tinta/70">
-            Digitalizamos tus cintas para que vuelvas a ver y compartir los
-            momentos que llevaban años guardados.
+            Digitalizamos tus cintas y te las devolvemos con tus vídeos listos
+            para descargar.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
-            <Link
-              href="/digitalizar"
+            <a
+              href="#calculadora"
               className="rounded-full bg-azul-principal px-6 py-3 font-bold text-white transition hover:bg-azul-noche"
             >
-              Digitalizar mis cintas
-            </Link>
-            <a href="#calculadora" className="font-bold text-azul-principal hover:text-azul-noche">
-              Calcular mi precio →
+              Calcular mi precio
             </a>
+            <Link href="/como-funciona" className="font-bold text-azul-principal hover:text-azul-noche">
+              Cómo funciona →
+            </Link>
           </div>
-          <ul className="mt-8 grid grid-cols-2 gap-3 text-sm font-semibold text-gris-tinta/80">
-            <li>· Desde 10 €/cinta</li>
-            <li>· Envío ida y vuelta 12 €</li>
-            <li>· Te devolvemos tus originales</li>
-            <li>· Recibes tus vídeos en USB</li>
+          <ul className="mt-8 space-y-1.5 text-sm font-semibold text-gris-tinta/80">
+            <li>✓ Seguimiento de principio a fin</li>
+            <li>✓ Transporte incluido en el precio final</li>
+            <li>✓ Solo pagas las cintas que conseguimos digitalizar</li>
           </ul>
         </div>
         <div className="overflow-hidden rounded-3xl shadow-sm">

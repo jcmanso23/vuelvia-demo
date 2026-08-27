@@ -1,5 +1,4 @@
 import { Photo } from "@/components/Photo";
-import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,15 +6,27 @@ export const metadata: Metadata = {
   description: "Cómo cuidamos tus cintas y tus recuerdos en cada paso del proceso.",
 };
 
-const bloques = [
-  { titulo: "Envío con seguimiento", texto: "Tanto la entrada como la vuelta de tus cintas se pueden seguir en todo momento." },
-  { titulo: "Confirmación de recepción", texto: "En cuanto llegan tus cintas, te avisamos. Sabrás exactamente cuántas hemos recibido." },
-  { titulo: "Revisión", texto: "Comprobamos el estado de cada cinta antes de empezar a digitalizar." },
-  { titulo: "Fotografías", texto: "Fotografiamos el paquete y el contenido al recibirlo, para dar trazabilidad y resolver cualquier duda." },
-  { titulo: "Identificación", texto: "Cada cinta queda vinculada a tu pedido de forma inequívoca, desde que llega hasta que se convierte en tu archivo final." },
-  { titulo: "Estados claros", texto: "Puedes seguir el proceso completo: recibidas, en revisión, en digitalización, listas, enviadas." },
-  { titulo: "Tus originales, de vuelta", texto: "Siempre te devolvemos las cintas originales junto con tu memoria USB." },
-  { titulo: "Copia de seguridad 7 días", texto: "Por seguridad, conservamos una copia durante 7 días después de la entrega. Después la eliminamos." },
+const etapas = [
+  {
+    momento: "Antes",
+    titulo: "Seguimiento de principio a fin",
+    texto: "Tanto el envío hacia Vuelvia como la vuelta a tu casa se pueden seguir en todo momento, con estados claros en tu página de pedido.",
+  },
+  {
+    momento: "Al llegar",
+    titulo: "Fotografiamos y contamos tus cintas",
+    texto: "En cuanto llegan, las contamos y fotografiamos, y te avisamos: sabrás exactamente cuántas hemos recibido.",
+  },
+  {
+    momento: "Durante",
+    titulo: "Cada cinta, identificada",
+    texto: "Cada cinta queda vinculada a tu pedido de forma inequívoca, desde que llega hasta que se convierte en tu archivo final.",
+  },
+  {
+    momento: "Al terminar",
+    titulo: "Descarga y originales de vuelta",
+    texto: "Recibes un enlace privado para tus vídeos, y tus cintas originales siempre vuelven a tu domicilio.",
+  },
 ];
 
 export default function SeguridadPage() {
@@ -29,6 +40,14 @@ export default function SeguridadPage() {
         sepas qué ocurre con ellas en cada momento.
       </p>
 
+      <div className="mt-8 rounded-2xl bg-azul-suave/50 p-6 text-center">
+        <p className="font-bold text-gris-tinta">Tus originales siempre vuelven.</p>
+        <p className="mt-1 text-sm text-gris-tinta/70">
+          Pase lo que pase con la digitalización, tus cintas físicas regresan
+          a tu domicilio.
+        </p>
+      </div>
+
       <div className="mt-10 overflow-hidden rounded-3xl">
         <Photo
           src="/images/recepcion-revision-cinta.webp"
@@ -39,33 +58,35 @@ export default function SeguridadPage() {
         />
       </div>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2">
-        {bloques.map((b) => (
-          <div key={b.titulo} className="rounded-2xl bg-white p-6">
-            <h2 className="font-bold text-gris-tinta">{b.titulo}</h2>
-            <p className="mt-2 text-sm text-gris-tinta/70">{b.texto}</p>
-          </div>
+      <ol className="mt-12 space-y-6">
+        {etapas.map((e) => (
+          <li key={e.momento} className="flex gap-5 rounded-2xl bg-white p-5">
+            <span className="w-20 shrink-0 text-xs font-bold uppercase tracking-wide text-azul-principal">
+              {e.momento}
+            </span>
+            <div>
+              <h2 className="font-bold text-gris-tinta">{e.titulo}</h2>
+              <p className="mt-1 text-sm text-gris-tinta/70">{e.texto}</p>
+            </div>
+          </li>
         ))}
-      </div>
+      </ol>
 
-      <div className="mt-12 rounded-2xl bg-azul-suave/50 p-6 text-center">
-        <p className="font-bold text-gris-tinta">
-          Privacidad de tus vídeos
-        </p>
+      <div className="mt-10 rounded-2xl bg-white p-6 text-center">
+        <p className="font-bold text-gris-tinta">Tus vídeos son tuyos. Punto.</p>
         <p className="mt-1 text-sm text-gris-tinta/70">
-          Usamos tu material exclusivamente para prestarte el servicio. No lo
-          reutilizamos, no lo publicamos y no lo usamos para entrenar
-          inteligencia artificial.
+          Solo los usamos para prestarte el servicio y los eliminamos según
+          nuestra política de conservación (7 días tras la entrega).
         </p>
       </div>
 
       <div className="mt-12 text-center">
-        <Link
-          href="/digitalizar"
+        <a
+          href="/#calculadora"
           className="inline-block rounded-full bg-azul-principal px-8 py-4 font-bold text-white transition hover:bg-azul-noche"
         >
-          Digitalizar mis cintas
-        </Link>
+          Calcular mi precio
+        </a>
       </div>
     </div>
   );

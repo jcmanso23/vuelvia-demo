@@ -106,7 +106,7 @@ function OrderTracking({ code }: { code: string }) {
             </div>
             <div className="flex justify-between">
               <dt>Entrada</dt>
-              <dd>{order.inboundMethod === "correos" ? "Correos" : "Recogida a domicilio"}</dd>
+              <dd>{order.inboundMethod === "correos" ? "Lo llevo a un punto" : "Recogida a domicilio"}</dd>
             </div>
             <div className="flex justify-between">
               <dt>Plazo estimado</dt>

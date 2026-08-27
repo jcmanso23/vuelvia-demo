@@ -2,56 +2,61 @@ import { formatEuros } from "@/lib/pricing";
 
 export function PriceSummary({
   tapeCount,
-  digitization,
-  shipping,
+  total,
   usbExtra,
   usbCopies,
-  total,
   volumeMessage,
 }: {
   tapeCount: number;
-  digitization: number;
-  shipping: number;
-  usbExtra: number;
-  usbCopies: number;
   total: number;
+  usbExtra?: number;
+  usbCopies?: number;
   volumeMessage?: string | null;
 }) {
   return (
     <div className="rounded-2xl border border-black/5 bg-white p-5">
-      <div className="space-y-2 text-sm text-gris-tinta/80">
-        <div className="flex items-center justify-between">
-          <span>
-            Digitalización ({tapeCount} {tapeCount === 1 ? "cinta" : "cintas"})
-          </span>
-          <span className="font-semibold text-gris-tinta">{formatEuros(digitization)}</span>
-        </div>
-        <div className="flex items-center justify-between">
-          <span>Envío ida y vuelta</span>
-          <span className="font-semibold text-gris-tinta">{formatEuros(shipping)}</span>
-        </div>
-        {usbCopies > 0 && (
-          <div className="flex items-center justify-between">
+      <p className="text-sm font-bold text-gris-tinta/60">Total</p>
+      <p className="text-3xl font-bold text-azul-principal">{formatEuros(total)}</p>
+      <p className="text-xs font-semibold text-gris-tinta/50">todo incluido</p>
+
+      <ul className="mt-4 space-y-1.5 text-sm text-gris-tinta/75">
+        <li className="flex items-center gap-2">
+          <span className="text-azul-principal">✓</span>
+          Digitalización de {tapeCount} {tapeCount === 1 ? "cinta" : "cintas"}
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="text-azul-principal">✓</span>
+          Transporte de ida y vuelta
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="text-azul-principal">✓</span>
+          Enlace de descarga de tus vídeos
+        </li>
+        <li className="flex items-center gap-2">
+          <span className="text-azul-principal">✓</span>
+          Tus cintas originales, de vuelta a casa
+        </li>
+        {!!usbCopies && usbCopies > 0 && (
+          <li className="flex items-center justify-between gap-2 border-t border-black/5 pt-1.5">
             <span>
-              Copia USB adicional × {usbCopies}
+              <span className="text-azul-principal">✓</span> Copia USB adicional × {usbCopies}
             </span>
             <span className="font-semibold text-gris-tinta">
-              {usbExtra > 0 ? formatEuros(usbExtra) : "A confirmar"}
+              {usbExtra && usbExtra > 0 ? formatEuros(usbExtra) : "A confirmar"}
             </span>
-          </div>
+          </li>
         )}
-      </div>
+      </ul>
+
       {volumeMessage && (
         <p className="mt-3 rounded-lg bg-naranja-luz/15 px-3 py-2 text-xs font-semibold text-gris-tinta">
           {volumeMessage}
         </p>
       )}
-      <div className="mt-4 flex items-center justify-between border-t border-black/10 pt-4">
-        <span className="font-bold text-gris-tinta">Total</span>
-        <span className="text-xl font-bold text-azul-principal">{formatEuros(total)}</span>
-      </div>
-      <p className="mt-2 text-xs text-gris-tinta/60">
-        Este es el precio total de tu pedido. Pago único, sin cargos posteriores.
+
+      <p className="mt-4 border-t border-black/10 pt-3 text-xs text-gris-tinta/60">
+        Pago único, sin cargos posteriores. Si una cinta no puede
+        digitalizarse, no te la cobramos.
       </p>
     </div>
   );

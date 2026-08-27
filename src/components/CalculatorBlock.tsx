@@ -9,20 +9,27 @@ import {
   loadPricingConfig,
   PricingConfig,
 } from "@/lib/pricing";
+import type { InboundMethod } from "@/lib/orders";
 import { PriceSummary } from "./PriceSummary";
+
+const QUICK_AMOUNTS = [3, 5, 10, 15];
 
 export function CalculatorBlock() {
   const [tapes, setTapes] = useState(5);
+  const [method, setMethod] = useState<InboundMethod>("correos");
   const [config, setConfig] = useState<PricingConfig | null>(null);
 
   useEffect(() => {
     setConfig(loadPricingConfig());
   }, []);
 
-  const pricing = config ? calculateTotal(tapes, 0, config) : null;
+  const pricing = config ? calculateTotal(tapes, method, 0, config) : null;
+  const dropoffTotal = config ? calculateTotal(tapes, "correos", 0, config).total : null;
+  const pickupTotal = config ? calculateTotal(tapes, "domicilio", 0, config).total : null;
+
   const volumeMessage =
     config && tapes > config.tier1Max
-      ? `A partir de la cinta ${config.tier1Max + 1}, cada cinta adicional cuesta solo ${formatEuros(
+      ? `¡Has desbloqueado la tarifa por volumen! Cada cinta adicional cuesta solo ${formatEuros(
           config.tier2PricePerTape
         )}.`
       : null;
@@ -37,25 +44,78 @@ export function CalculatorBlock() {
           <div className="mt-6 flex justify-center">
             <Counter value={tapes} onChange={setTapes} />
           </div>
+          <div className="mt-3 flex justify-center gap-2">
+            {QUICK_AMOUNTS.map((n) => (
+              <button
+                key={n}
+                type="button"
+                onClick={() => setTapes(n)}
+                className={`rounded-full px-3 py-1 text-xs font-bold transition ${
+                  tapes === n
+                    ? "bg-azul-principal text-white"
+                    : "bg-white text-gris-tinta/60 hover:text-azul-principal"
+                }`}
+              >
+                {n}
+              </button>
+            ))}
+          </div>
+
+          <h3 className="mt-8 text-center font-bold text-gris-tinta">
+            ¿Cómo quieres enviárnoslas?
+          </h3>
+          <div className="mt-3 grid gap-3 sm:grid-cols-2">
+            <button
+              type="button"
+              onClick={() => setMethod("correos")}
+              className={`rounded-2xl border-2 p-4 text-left transition ${
+                method === "correos"
+                  ? "border-azul-principal bg-azul-suave/50"
+                  : "border-black/10 bg-white hover:border-azul-principal/50"
+              }`}
+            >
+              <p className="text-xs font-bold uppercase tracking-wide text-azul-principal">
+                Más económico
+              </p>
+              <p className="mt-1 font-bold text-gris-tinta">Lo llevo a un punto</p>
+              {dropoffTotal !== null && (
+                <p className="text-sm text-gris-tinta/70">{formatEuros(dropoffTotal)} todo incluido</p>
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={() => setMethod("domicilio")}
+              className={`rounded-2xl border-2 p-4 text-left transition ${
+                method === "domicilio"
+                  ? "border-azul-principal bg-azul-suave/50"
+                  : "border-black/10 bg-white hover:border-azul-principal/50"
+              }`}
+            >
+              <p className="text-xs font-bold uppercase tracking-wide text-coral-digital">
+                Más cómodo
+              </p>
+              <p className="mt-1 font-bold text-gris-tinta">Recogedlo en mi casa</p>
+              {pickupTotal !== null && (
+                <p className="text-sm text-gris-tinta/70">{formatEuros(pickupTotal)} todo incluido</p>
+              )}
+            </button>
+          </div>
+
           {pricing && (
             <div className="mt-6">
-              <PriceSummary
-                tapeCount={tapes}
-                digitization={pricing.digitization}
-                shipping={pricing.shipping}
-                usbExtra={0}
-                usbCopies={0}
-                total={pricing.total}
-                volumeMessage={volumeMessage}
-              />
+              <PriceSummary tapeCount={tapes} total={pricing.total} volumeMessage={volumeMessage} />
             </div>
           )}
           <Link
-            href={`/digitalizar?cintas=${tapes}`}
+            href={`/digitalizar?cintas=${tapes}&metodo=${method}`}
             className="mt-5 block rounded-full bg-azul-principal px-6 py-3 text-center font-bold text-white transition hover:bg-azul-noche"
           >
             Continuar con {tapes} {tapes === 1 ? "cinta" : "cintas"}
           </Link>
+          <p className="mt-3 text-center text-xs text-gris-tinta/50">
+            Tus vídeos se entregan mediante enlace de descarga. Tus cintas
+            originales vuelven a tu domicilio.
+          </p>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Counter } from "@/components/Counter";
 import { PriceSummary } from "@/components/PriceSummary";
+import { Photo } from "@/components/Photo";
 import { StepIndicator } from "./StepIndicator";
 import {
   calculateTotal,
@@ -16,17 +17,7 @@ import {
   saveOrder,
   Customer,
   InboundMethod,
-  TapeFormat,
 } from "@/lib/orders";
-
-const FORMAT_OPTIONS: { value: TapeFormat; label: string }[] = [
-  { value: "VHS", label: "VHS" },
-  { value: "VHS-C", label: "VHS-C" },
-  { value: "MiniDV", label: "MiniDV" },
-  { value: "8mm", label: "8 mm" },
-  { value: "varios", label: "Tengo varios tipos" },
-  { value: "no-lo-se", label: "No lo sé" },
-];
 
 const EMPTY_CUSTOMER: Customer = {
   name: "",
@@ -46,11 +37,9 @@ export function CheckoutWizard() {
   const [step, setStep] = useState(1);
   const [config, setConfig] = useState<PricingConfig | null>(null);
   const [tapes, setTapes] = useState(1);
-  const [formats, setFormats] = useState<TapeFormat[]>([]);
+  const [method, setMethod] = useState<InboundMethod>("correos");
   const [usbCopies, setUsbCopies] = useState(0);
-  const [inboundMethod, setInboundMethod] = useState<InboundMethod | null>(null);
   const [customer, setCustomer] = useState<Customer>(EMPTY_CUSTOMER);
-  const [moldChecked, setMoldChecked] = useState(false);
   const [card, setCard] = useState({ number: "", expiry: "", cvc: "", name: "" });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -59,33 +48,27 @@ export function CheckoutWizard() {
     setConfig(loadPricingConfig());
     const paramTapes = Number(searchParams.get("cintas"));
     if (paramTapes > 0) setTapes(paramTapes);
+    const paramMethod = searchParams.get("metodo");
+    if (paramMethod === "correos" || paramMethod === "domicilio") setMethod(paramMethod);
   }, [searchParams]);
 
   const pricing = useMemo(
-    () => (config ? calculateTotal(tapes, usbCopies, config) : null),
-    [config, tapes, usbCopies]
+    () => (config ? calculateTotal(tapes, method, usbCopies, config) : null),
+    [config, tapes, method, usbCopies]
   );
+  const dropoffTotal = config ? calculateTotal(tapes, "correos", 0, config).total : null;
+  const pickupTotal = config ? calculateTotal(tapes, "domicilio", 0, config).total : null;
 
   const volumeMessage =
     config && tapes > config.tier1Max
-      ? `A partir de la cinta ${config.tier1Max + 1}, cada cinta adicional cuesta solo ${formatEuros(
+      ? `¡Has desbloqueado la tarifa por volumen! Cada cinta adicional cuesta solo ${formatEuros(
           config.tier2PricePerTape
         )}.`
       : null;
 
-  function toggleFormat(value: TapeFormat) {
-    setFormats((prev) =>
-      prev.includes(value) ? prev.filter((f) => f !== value) : [...prev, value]
-    );
-  }
-
   function goNext() {
     setError(null);
-    if (step === 2 && !inboundMethod) {
-      setError("Elige cómo quieres hacernos llegar tus cintas.");
-      return;
-    }
-    if (step === 3) {
+    if (step === 2) {
       const required = Object.values(customer).every((v) => v.trim().length > 0);
       if (!required) {
         setError("Revisa que todos los campos estén completos.");
@@ -95,12 +78,8 @@ export function CheckoutWizard() {
         setError("Revisa tu dirección de email.");
         return;
       }
-      if (!moldChecked) {
-        setError("Confirma que has revisado que tus cintas no tienen moho.");
-        return;
-      }
     }
-    setStep((s) => Math.min(4, s + 1));
+    setStep((s) => Math.min(3, s + 1));
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -112,7 +91,7 @@ export function CheckoutWizard() {
 
   async function handlePay(e: React.FormEvent) {
     e.preventDefault();
-    if (!config || !inboundMethod) return;
+    if (!config) return;
     setSubmitting(true);
     setError(null);
 
@@ -125,9 +104,9 @@ export function CheckoutWizard() {
 
     const order = createOrderFromCheckout({
       tapeCount: tapes,
-      formats: formats.length > 0 ? formats : ["no-lo-se"],
+      formats: ["no-lo-se"],
       usbCopies,
-      inboundMethod,
+      inboundMethod: method,
       customer,
       pricingConfig: config,
     });
@@ -155,77 +134,52 @@ export function CheckoutWizard() {
                 <Counter value={tapes} onChange={setTapes} />
               </div>
 
-              <h3 className="mt-8 font-bold text-gris-tinta">¿Qué tipo de cintas tienes?</h3>
-              <p className="text-xs text-gris-tinta/60">
-                Esto nos ayuda a prepararnos. No cambia el precio.
-              </p>
-              <div className="mt-3 flex flex-wrap gap-2">
-                {FORMAT_OPTIONS.map((opt) => (
-                  <button
-                    key={opt.value}
-                    type="button"
-                    onClick={() => toggleFormat(opt.value)}
-                    className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
-                      formats.includes(opt.value)
-                        ? "border-azul-principal bg-azul-suave text-azul-noche"
-                        : "border-black/10 text-gris-tinta/70 hover:border-azul-principal"
-                    }`}
-                  >
-                    {opt.label}
-                  </button>
-                ))}
+              <h3 className="mt-8 font-bold text-gris-tinta">¿Cómo quieres enviárnoslas?</h3>
+              <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                <button
+                  type="button"
+                  onClick={() => setMethod("correos")}
+                  className={`rounded-2xl border-2 p-4 text-left transition ${
+                    method === "correos"
+                      ? "border-azul-principal bg-azul-suave/50"
+                      : "border-black/10 hover:border-azul-principal/50"
+                  }`}
+                >
+                  <p className="text-xs font-bold uppercase tracking-wide text-azul-principal">
+                    Más económico
+                  </p>
+                  <p className="mt-1 font-bold text-gris-tinta">Lo llevo a un punto</p>
+                  {dropoffTotal !== null && (
+                    <p className="text-sm text-gris-tinta/70">{formatEuros(dropoffTotal)} todo incluido</p>
+                  )}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMethod("domicilio")}
+                  className={`rounded-2xl border-2 p-4 text-left transition ${
+                    method === "domicilio"
+                      ? "border-azul-principal bg-azul-suave/50"
+                      : "border-black/10 hover:border-azul-principal/50"
+                  }`}
+                >
+                  <p className="text-xs font-bold uppercase tracking-wide text-coral-digital">
+                    Más cómodo
+                  </p>
+                  <p className="mt-1 font-bold text-gris-tinta">Recogedlo en mi casa</p>
+                  {pickupTotal !== null && (
+                    <p className="text-sm text-gris-tinta/70">{formatEuros(pickupTotal)} todo incluido</p>
+                  )}
+                </button>
               </div>
 
-              <h3 className="mt-8 font-bold text-gris-tinta">Copia USB adicional</h3>
-              <p className="text-xs text-gris-tinta/60">
-                Ideal para regalar o compartir con otro familiar.
-                {config.usbExtraPrice === null && " (precio a confirmar con Vuelvia)"}
+              <p className="mt-6 rounded-lg bg-gris-niebla px-4 py-3 text-xs text-gris-tinta/60">
+                Aceptamos VHS, VHS-C, MiniDV y 8&nbsp;mm. Si no sabes cuál
+                tienes, no pasa nada — no hace falta saberlo para pedir.
               </p>
-              <div className="mt-3">
-                <Counter value={usbCopies} onChange={setUsbCopies} min={0} max={10} />
-              </div>
             </div>
           )}
 
           {step === 2 && (
-            <div>
-              <h2 className="font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
-                ¿Cómo quieres hacérnoslas llegar?
-              </h2>
-              <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                <button
-                  type="button"
-                  onClick={() => setInboundMethod("correos")}
-                  className={`rounded-2xl border-2 p-5 text-left transition ${
-                    inboundMethod === "correos"
-                      ? "border-azul-principal bg-azul-suave/50"
-                      : "border-black/10 hover:border-azul-principal/50"
-                  }`}
-                >
-                  <p className="font-bold text-gris-tinta">Oficina de Correos</p>
-                  <p className="mt-1 text-sm text-gris-tinta/70">
-                    Lleva tu paquete a una oficina de Correos cuando te venga bien.
-                  </p>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setInboundMethod("domicilio")}
-                  className={`rounded-2xl border-2 p-5 text-left transition ${
-                    inboundMethod === "domicilio"
-                      ? "border-azul-principal bg-azul-suave/50"
-                      : "border-black/10 hover:border-azul-principal/50"
-                  }`}
-                >
-                  <p className="font-bold text-gris-tinta">Recogida a domicilio</p>
-                  <p className="mt-1 text-sm text-gris-tinta/70">
-                    Si lo prefieres, recogemos las cintas en tu casa.
-                  </p>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {step === 3 && (
             <div>
               <h2 className="font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
                 Tus datos
@@ -240,32 +194,45 @@ export function CheckoutWizard() {
                 <Field label="Localidad" value={customer.city} onChange={(v) => setCustomer({ ...customer, city: v })} />
                 <Field label="Provincia" value={customer.province} onChange={(v) => setCustomer({ ...customer, province: v })} />
               </div>
-
-              <label className="mt-6 flex items-start gap-3 rounded-xl bg-naranja-luz/15 p-4 text-sm text-gris-tinta/80">
-                <input
-                  type="checkbox"
-                  checked={moldChecked}
-                  onChange={(e) => setMoldChecked(e.target.checked)}
-                  className="mt-1 h-4 w-4"
-                />
-                <span>
-                  <strong>Importante:</strong> si alguna cinta tiene manchas
-                  blancas, polvo o aspecto algodonoso, podría tener moho. He
-                  revisado que mis cintas no presentan moho visible.
-                </span>
-              </label>
+              <p className="mt-4 text-xs text-gris-tinta/50">
+                La dirección se usa tanto para la recogida (si la elegiste)
+                como para devolverte tus cintas originales.
+              </p>
             </div>
           )}
 
-          {step === 4 && (
+          {step === 3 && (
             <form onSubmit={handlePay}>
               <h2 className="font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
+                ¿Quieres también una copia física?
+              </h2>
+              <div className="mt-4 flex items-center gap-4 rounded-2xl border border-black/10 p-4">
+                <div className="w-20 shrink-0 overflow-hidden rounded-lg">
+                  <Photo
+                    src="/images/unboxing-usb-cliente.webp"
+                    alt="Copia en memoria USB"
+                    width={200}
+                    height={200}
+                    className="h-16 w-20 object-cover"
+                  />
+                </div>
+                <div className="flex-1">
+                  <p className="font-bold text-gris-tinta">Copia en memoria USB</p>
+                  <p className="text-xs text-gris-tinta/60">
+                    La enviamos junto con tus cintas originales. Ideal para
+                    guardarla también en un soporte físico o regalarla.
+                  </p>
+                </div>
+                <Counter value={usbCopies} onChange={setUsbCopies} min={0} max={10} />
+              </div>
+
+              <h2 className="mt-8 font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
                 Revisar y pagar
               </h2>
               <div className="mt-4 space-y-1 text-sm text-gris-tinta/70">
                 <p>
                   {tapes} {tapes === 1 ? "cinta" : "cintas"} ·{" "}
-                  {inboundMethod === "correos" ? "Entrega en Correos" : "Recogida a domicilio"}
+                  {method === "correos" ? "Lo llevo a un punto" : "Recogida en domicilio"}
                 </p>
                 <p>
                   {customer.name} {customer.surname} · {customer.email}
@@ -304,21 +271,21 @@ export function CheckoutWizard() {
                 disabled={submitting}
                 className="mt-6 w-full rounded-full bg-azul-principal px-6 py-3.5 font-bold text-white transition hover:bg-azul-noche disabled:opacity-60"
               >
-                {submitting ? "Procesando…" : `Pagar ${formatEuros(pricing.total)}`}
+                {submitting ? "Procesando…" : `Confirmar pedido · ${formatEuros(pricing.total)}`}
               </button>
               <p className="mt-3 text-center text-xs text-gris-tinta/50">
-                Pago único · Envío ida y vuelta incluido · Te devolvemos los
+                Pago único · Transporte incluido · Te devolvemos los
                 originales · Si una cinta no puede digitalizarse, no te la
                 cobramos.
               </p>
             </form>
           )}
 
-          {error && step !== 4 && (
+          {error && step !== 3 && (
             <p className="mt-4 text-sm font-semibold text-coral-digital">{error}</p>
           )}
 
-          {step < 4 && (
+          {step < 3 && (
             <div className="mt-8 flex items-center justify-between">
               {step > 1 ? (
                 <button
@@ -340,16 +307,23 @@ export function CheckoutWizard() {
               </button>
             </div>
           )}
+          {step === 3 && (
+            <button
+              type="button"
+              onClick={goBack}
+              className="mt-4 font-bold text-gris-tinta/60 hover:text-gris-tinta"
+            >
+              ← Atrás
+            </button>
+          )}
         </div>
 
         <div className="h-fit">
           <PriceSummary
             tapeCount={tapes}
-            digitization={pricing.digitization}
-            shipping={pricing.shipping}
+            total={pricing.total}
             usbExtra={pricing.usbExtra}
             usbCopies={usbCopies}
-            total={pricing.total}
             volumeMessage={volumeMessage}
           />
         </div>

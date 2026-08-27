@@ -1,8 +1,13 @@
+export type InboundMethod = "correos" | "domicilio";
+
 export type PricingConfig = {
   tier1PricePerTape: number;
   tier1Max: number;
   tier2PricePerTape: number;
-  shippingRoundTrip: number;
+  /** Envío ida y vuelta si el cliente lleva el paquete a un punto de entrega. */
+  dropoffRoundTrip: number;
+  /** Envío ida y vuelta si se recoge el paquete en el domicilio del cliente. */
+  homePickupRoundTrip: number;
   usbExtraPrice: number | null;
   estimatedDaysNormal: number;
   estimatedDaysHighDemand: number;
@@ -13,7 +18,11 @@ export const DEFAULT_PRICING: PricingConfig = {
   tier1PricePerTape: 10,
   tier1Max: 10,
   tier2PricePerTape: 8,
-  shippingRoundTrip: 12,
+  dropoffRoundTrip: 12,
+  // Nota: sin proveedor logístico definitivo confirmado, se usa un
+  // incremento de ejemplo sobre el envío a punto. Ajustar en cuanto se
+  // confirme el coste real de recogida a domicilio.
+  homePickupRoundTrip: 18,
   usbExtraPrice: null,
   estimatedDaysNormal: 10,
   estimatedDaysHighDemand: 21,
@@ -46,13 +55,18 @@ export function calculateDigitization(tapes: number, config: PricingConfig): num
   return base + rest;
 }
 
+export function shippingFor(method: InboundMethod, config: PricingConfig): number {
+  return method === "domicilio" ? config.homePickupRoundTrip : config.dropoffRoundTrip;
+}
+
 export function calculateTotal(
   tapes: number,
+  method: InboundMethod,
   usbCopies: number,
   config: PricingConfig
 ) {
   const digitization = calculateDigitization(tapes, config);
-  const shipping = tapes > 0 ? config.shippingRoundTrip : 0;
+  const shipping = tapes > 0 ? shippingFor(method, config) : 0;
   const usbExtra = config.usbExtraPrice ? usbCopies * config.usbExtraPrice : 0;
   const total = digitization + shipping + usbExtra;
   return { digitization, shipping, usbExtra, total };

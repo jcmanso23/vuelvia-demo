@@ -1,6 +1,6 @@
-import { PricingConfig, calculateTotal } from "./pricing";
+import { InboundMethod, PricingConfig, calculateTotal } from "./pricing";
 
-export type InboundMethod = "correos" | "domicilio";
+export type { InboundMethod };
 
 export type TapeFormat = "VHS" | "VHS-C" | "MiniDV" | "8mm" | "no-lo-se" | "varios";
 
@@ -136,6 +136,7 @@ export function createOrderFromCheckout(input: {
 }): Order {
   const pricing = calculateTotal(
     input.tapeCount,
+    input.inboundMethod,
     input.usbCopies,
     input.pricingConfig
   );

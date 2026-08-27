@@ -29,7 +29,7 @@ export default function AdminPreciosPage() {
     setSaved(true);
   }
 
-  const example = calculateTotal(15, 0, config);
+  const example = calculateTotal(15, "correos", 0, config);
 
   return (
     <AdminShell>
@@ -52,7 +52,10 @@ export default function AdminPreciosPage() {
           </div>
           <div>
             <h2 className="font-bold text-gris-tinta">Transporte</h2>
-            <NumberField label="Ida y vuelta (€)" value={config.shippingRoundTrip} onChange={(v) => update("shippingRoundTrip", v)} />
+            <div className="mt-2 grid grid-cols-2 gap-3">
+              <NumberField label="Lo lleva a un punto (€)" value={config.dropoffRoundTrip} onChange={(v) => update("dropoffRoundTrip", v)} />
+              <NumberField label="Recogida a domicilio (€)" value={config.homePickupRoundTrip} onChange={(v) => update("homePickupRoundTrip", v)} />
+            </div>
           </div>
           <div>
             <h2 className="font-bold text-gris-tinta">Copia USB adicional</h2>
