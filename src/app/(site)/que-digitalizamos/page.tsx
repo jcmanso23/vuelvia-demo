@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { assetPath } from "@/lib/asset";
+import { Photo } from "@/components/Photo";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -44,8 +43,8 @@ export default function QueDigitalizamosPage() {
       </p>
 
       <div className="mt-10 overflow-hidden rounded-3xl">
-        <Image
-          src={assetPath("/images/cintas-vhs-flatlay.webp")}
+        <Photo
+          src="/images/cintas-vhs-flatlay.webp"
           alt="Distintos formatos de cintas de vídeo: VHS, VHS-C, MiniDV y 8mm"
           width={1600}
           height={1100}

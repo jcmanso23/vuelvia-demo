@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { assetPath } from "@/lib/asset";
+import { Photo } from "@/components/Photo";
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
 import { CalculatorBlock } from "@/components/CalculatorBlock";
@@ -64,8 +63,8 @@ export default function Home() {
               ))}
             </ol>
             <div className="overflow-hidden rounded-3xl">
-              <Image
-                src={assetPath("/images/proceso-cinta-a-usb.webp")}
+              <Photo
+                src="/images/proceso-cinta-a-usb.webp"
                 alt="El proceso de Vuelvia: de la cinta VHS a la memoria USB, pasando por el embalaje y envío"
                 width={1600}
                 height={1200}
@@ -96,8 +95,8 @@ export default function Home() {
               <TrustBadges className="mt-6" />
             </div>
             <div className="overflow-hidden rounded-3xl">
-              <Image
-                src={assetPath("/images/recepcion-revision-cinta.webp")}
+              <Photo
+                src="/images/recepcion-revision-cinta.webp"
                 alt="Un técnico de Vuelvia revisando y registrando una cinta VHS con guantes de protección"
                 width={1600}
                 height={1200}
@@ -139,8 +138,8 @@ export default function Home() {
       <section className="border-y border-black/5 bg-white py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2">
           <div className="order-2 overflow-hidden rounded-3xl md:order-1">
-            <Image
-              src={assetPath("/images/unboxing-usb-cliente.webp")}
+            <Photo
+              src="/images/unboxing-usb-cliente.webp"
               alt="Una clienta sonriendo mientras saca su memoria USB Vuelvia de la caja recibida"
               width={1600}
               height={1200}
@@ -208,8 +207,8 @@ export default function Home() {
             </p>
           </div>
           <div className="mx-auto mt-8 max-w-sm overflow-hidden rounded-3xl">
-            <Image
-              src={assetPath("/images/cintas-vhs-flatlay.webp")}
+            <Photo
+              src="/images/cintas-vhs-flatlay.webp"
               alt="Distintos formatos de cintas: VHS, VHS-C, MiniDV y 8mm"
               width={1200}
               height={1000}
@@ -246,8 +245,8 @@ export default function Home() {
       <section className="border-t border-black/5 bg-white py-20">
         <div className="mx-auto grid max-w-5xl items-center gap-10 px-6 md:grid-cols-2">
           <div className="overflow-hidden rounded-3xl">
-            <Image
-              src={assetPath("/images/entrega-repartidor-paquete.webp")}
+            <Photo
+              src="/images/entrega-repartidor-paquete.webp"
               alt="Una clienta recibiendo su paquete de Vuelvia en la entrega a domicilio"
               width={1600}
               height={1200}
