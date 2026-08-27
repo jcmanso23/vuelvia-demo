@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #1f2a37;
+
+  /* Vuelvia — paleta de marca */
+  --color-azul-principal: #22a7ff;
+  --color-azul-noche: #0c3c78;
+  --color-azul-suave: #ddf4ff;
+  --color-coral-digital: #ff6a4d;
+  --color-naranja-luz: #ffb24c;
+  --color-gris-tinta: #1f2a37;
+  --color-gris-niebla: #f4f7fb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-azul-principal: var(--color-azul-principal);
+  --color-azul-noche: var(--color-azul-noche);
+  --color-azul-suave: var(--color-azul-suave);
+  --color-coral-digital: var(--color-coral-digital);
+  --color-naranja-luz: var(--color-naranja-luz);
+  --color-gris-tinta: var(--color-gris-tinta);
+  --color-gris-niebla: var(--color-gris-niebla);
+
+  --font-display: var(--font-baloo);
+  --font-sans: var(--font-nunito);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
