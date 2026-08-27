@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset";
 import Link from "next/link";
 import { TrustBadges } from "@/components/TrustBadges";
 import type { Metadata } from "next";
@@ -87,7 +88,7 @@ export default function ComoFuncionaPage() {
       <div className="mt-12 grid gap-8 sm:grid-cols-2">
         <div className="overflow-hidden rounded-3xl">
           <Image
-            src="/images/proceso-cinta-a-usb.webp"
+            src={assetPath("/images/proceso-cinta-a-usb.webp")}
             alt="El recorrido de una cinta VHS hasta convertirse en una memoria USB Vuelvia"
             width={1600}
             height={1200}
@@ -96,7 +97,7 @@ export default function ComoFuncionaPage() {
         </div>
         <div className="overflow-hidden rounded-3xl">
           <Image
-            src="/images/recepcion-revision-cinta.webp"
+            src={assetPath("/images/recepcion-revision-cinta.webp")}
             alt="Un técnico de Vuelvia registrando y revisando una cinta al recibirla"
             width={1600}
             height={1200}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -31,7 +32,7 @@ export default function SeguridadPage() {
 
       <div className="mt-10 overflow-hidden rounded-3xl">
         <Image
-          src="/images/recepcion-revision-cinta.webp"
+          src={assetPath("/images/recepcion-revision-cinta.webp")}
           alt="Un técnico de Vuelvia revisando y registrando una cinta con cuidado"
           width={1600}
           height={1100}

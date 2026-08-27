@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { assetPath } from "@/lib/asset";
 import Link from "next/link";
 
 export function Hero() {
@@ -33,7 +34,7 @@ export function Hero() {
         </div>
         <div className="overflow-hidden rounded-3xl shadow-sm">
           <Image
-            src="/images/abuela-hijo-viendo-cinta.webp"
+            src={assetPath("/images/abuela-hijo-viendo-cinta.webp")}
             alt="Una madre y su hijo revisando juntos una cinta VHS y una foto familiar"
             width={1600}
             height={1200}
