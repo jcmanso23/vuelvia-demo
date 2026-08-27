@@ -53,7 +53,10 @@ export function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-3">
+        <h3 className="mt-12 text-center font-[family-name:var(--font-baloo)] text-2xl font-bold text-gris-tinta">
+          Personas que ya han vuelto a verlos.
+        </h3>
+        <div className="mt-6 grid gap-5 sm:grid-cols-3">
           {testimonios.map((t) => (
             <div key={t.texto} className="rounded-2xl bg-white p-5">
               <p className="text-sm text-gris-tinta/75">&ldquo;{t.texto}&rdquo;</p>

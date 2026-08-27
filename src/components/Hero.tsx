@@ -10,8 +10,8 @@ export function Hero() {
             Tus recuerdos <span className="text-azul-principal">merecen volver.</span>
           </h1>
           <p className="mt-5 max-w-md text-lg text-gris-tinta/70">
-            Digitalizamos tus cintas y te las devolvemos con tus vídeos listos
-            para descargar.
+            Pasa tus viejas cintas a digital y vuelve a ver todo lo que
+            guardan. Nosotros nos ocupamos del viaje de ida y vuelta.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
@@ -25,9 +25,9 @@ export function Hero() {
             </Link>
           </div>
           <ul className="mt-8 space-y-1.5 text-sm font-semibold text-gris-tinta/80">
-            <li>✓ Seguimiento de principio a fin</li>
-            <li>✓ Transporte incluido en el precio final</li>
-            <li>✓ Solo pagas las cintas que conseguimos digitalizar</li>
+            <li>✓ Sabes dónde están tus cintas en cada momento</li>
+            <li>✓ El precio que ves ya incluye el transporte</li>
+            <li>✓ Si una cinta no se puede digitalizar, no la pagas</li>
           </ul>
         </div>
         <div className="overflow-hidden rounded-3xl shadow-sm">

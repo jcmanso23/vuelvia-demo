@@ -9,23 +9,23 @@ export const metadata: Metadata = {
 const etapas = [
   {
     momento: "Antes",
-    titulo: "Seguimiento de principio a fin",
-    texto: "Tanto el envío hacia Vuelvia como la vuelta a tu casa se pueden seguir en todo momento, con estados claros en tu página de pedido.",
+    titulo: "Sabes dónde están",
+    texto: "Puedes seguir el viaje hasta Vuelvia y también la vuelta a casa.",
   },
   {
     momento: "Al llegar",
-    titulo: "Fotografiamos y contamos tus cintas",
-    texto: "En cuanto llegan, las contamos y fotografiamos, y te avisamos: sabrás exactamente cuántas hemos recibido.",
+    titulo: "Te decimos que ya están aquí",
+    texto: "Las contamos y fotografiamos. Después te avisamos de cuántas hemos recibido.",
   },
   {
     momento: "Durante",
-    titulo: "Cada cinta, identificada",
-    texto: "Cada cinta queda vinculada a tu pedido de forma inequívoca, desde que llega hasta que se convierte en tu archivo final.",
+    titulo: "Cada cinta sigue siendo la tuya",
+    texto: "Las identificamos para mantener cada cinta unida a su pedido y a su archivo final.",
   },
   {
     momento: "Al terminar",
-    titulo: "Descarga y originales de vuelta",
-    texto: "Recibes un enlace privado para tus vídeos, y tus cintas originales siempre vuelven a tu domicilio.",
+    titulo: "Los vídeos por un lado. Los originales de vuelta.",
+    texto: "Recibes tu enlace de descarga y preparamos tus cintas para regresar a casa.",
   },
 ];
 
@@ -36,15 +36,16 @@ export default function SeguridadPage() {
         Sabemos que no son solo cintas.
       </h1>
       <p className="mx-auto mt-4 max-w-xl text-center text-gris-tinta/70">
-        Muchas son copias únicas de recuerdos familiares. Por eso queremos que
-        sepas qué ocurre con ellas en cada momento.
+        Puede que ahí esté el único vídeo de una boda, una infancia o alguien
+        que ya no está. Por eso queremos que sepas exactamente qué hacemos con
+        tus cintas desde que salen de casa hasta que vuelven.
       </p>
 
       <div className="mt-8 rounded-2xl bg-azul-suave/50 p-6 text-center">
         <p className="font-bold text-gris-tinta">Tus originales siempre vuelven.</p>
         <p className="mt-1 text-sm text-gris-tinta/70">
-          Pase lo que pase con la digitalización, tus cintas físicas regresan
-          a tu domicilio.
+          Las digitalicemos o no, te devolvemos todas las cintas que nos
+          envíes.
         </p>
       </div>
 
@@ -75,8 +76,9 @@ export default function SeguridadPage() {
       <div className="mt-10 rounded-2xl bg-white p-6 text-center">
         <p className="font-bold text-gris-tinta">Tus vídeos son tuyos. Punto.</p>
         <p className="mt-1 text-sm text-gris-tinta/70">
-          Solo los usamos para prestarte el servicio y los eliminamos según
-          nuestra política de conservación (7 días tras la entrega).
+          Solo accedemos a ellos para realizar el trabajo y los conservamos
+          temporalmente por seguridad. Después, los eliminamos (7 días tras
+          la entrega).
         </p>
       </div>
 

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Logo } from "./Logo";
 
 const links = [
@@ -14,6 +15,26 @@ const links = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const isCheckout = pathname?.startsWith("/digitalizar");
+
+  if (isCheckout) {
+    return (
+      <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <Link href="/" aria-label="Vuelvia — inicio">
+            <Logo />
+          </Link>
+          <Link
+            href="/contacto"
+            className="text-sm font-semibold text-gris-tinta/60 hover:text-azul-principal"
+          >
+            Necesito ayuda
+          </Link>
+        </nav>
+      </header>
+    );
+  }
 
   return (
     <header className="sticky top-0 z-40 border-b border-black/5 bg-white/90 backdrop-blur">
@@ -33,7 +54,7 @@ export function Header() {
             href="/digitalizar"
             className="rounded-full bg-azul-principal px-5 py-2.5 text-sm font-bold text-white transition hover:bg-azul-noche"
           >
-            Digitalizar mis cintas
+            Calcular mi precio
           </Link>
         </div>
         <button
@@ -62,7 +83,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="rounded-full bg-azul-principal px-5 py-3 text-center font-bold text-white"
             >
-              Digitalizar mis cintas
+              Calcular mi precio
             </Link>
           </div>
         </div>

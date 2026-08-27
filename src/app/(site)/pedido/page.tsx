@@ -106,7 +106,7 @@ function OrderTracking({ code }: { code: string }) {
             </div>
             <div className="flex justify-between">
               <dt>Entrada</dt>
-              <dd>{order.inboundMethod === "correos" ? "Lo llevo a un punto" : "Recogida a domicilio"}</dd>
+              <dd>{order.inboundMethod === "correos" ? "Las llevo yo" : "Venid a recogerlas"}</dd>
             </div>
             <div className="flex justify-between">
               <dt>Plazo estimado</dt>
@@ -124,7 +124,7 @@ function OrderTracking({ code }: { code: string }) {
               href={`/contacto?pedido=${order.code}`}
               className="font-bold text-azul-principal"
             >
-              Contactar con Vuelvia
+              Escribir a Vuelvia
             </Link>
           </div>
 

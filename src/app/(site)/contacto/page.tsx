@@ -21,11 +21,11 @@ export default function ContactoPage() {
   return (
     <div className="mx-auto max-w-2xl px-6 py-16">
       <h1 className="text-center font-[family-name:var(--font-baloo)] text-4xl font-bold text-gris-tinta">
-        Contacta con Vuelvia
+        Estamos al otro lado.
       </h1>
       <p className="mx-auto mt-4 max-w-md text-center text-gris-tinta/70">
-        Para dudas, incidencias, cintas con moho o casos especiales, escríbenos
-        y te respondemos lo antes posible.
+        Si tienes una cinta rara, dudas sobre el envío o simplemente quieres
+        preguntarnos algo antes de mandarlas, escríbenos.
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -86,7 +86,7 @@ export default function ContactoPage() {
           type="submit"
           className="w-full rounded-full bg-azul-principal px-6 py-3 font-bold text-white transition hover:bg-azul-noche"
         >
-          Enviar mensaje
+          Escribir a Vuelvia
         </button>
       </form>
     </div>

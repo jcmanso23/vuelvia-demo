@@ -61,9 +61,9 @@ export function CheckoutWizard() {
 
   const volumeMessage =
     config && tapes > config.tier1Max
-      ? `¡Has desbloqueado la tarifa por volumen! Cada cinta adicional cuesta solo ${formatEuros(
+      ? `A partir de aquí, cada cinta te cuesta menos: desde la cinta ${config.tier1Max + 1}, las siguientes cuestan ${formatEuros(
           config.tier2PricePerTape
-        )}.`
+        )} cada una.`
       : null;
 
   function goNext() {
@@ -128,13 +128,14 @@ export function CheckoutWizard() {
           {step === 1 && (
             <div>
               <h2 className="font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
-                ¿Cuántas cintas quieres digitalizar?
+                ¿Cuántas cintas tienes?
               </h2>
+              <p className="text-xs text-gris-tinta/50">No hace falta que sean todas del mismo formato.</p>
               <div className="mt-5 flex justify-center">
                 <Counter value={tapes} onChange={setTapes} />
               </div>
 
-              <h3 className="mt-8 font-bold text-gris-tinta">¿Cómo quieres enviárnoslas?</h3>
+              <h3 className="mt-8 font-bold text-gris-tinta">¿Cómo quieres hacérnoslas llegar?</h3>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
                 <button
                   type="button"
@@ -146,9 +147,10 @@ export function CheckoutWizard() {
                   }`}
                 >
                   <p className="text-xs font-bold uppercase tracking-wide text-azul-principal">
-                    Más económico
+                    La opción más económica
                   </p>
-                  <p className="mt-1 font-bold text-gris-tinta">Lo llevo a un punto</p>
+                  <p className="mt-1 font-bold text-gris-tinta">Las llevo yo</p>
+                  <p className="text-xs text-gris-tinta/50">A un punto de entrega cercano</p>
                   {dropoffTotal !== null && (
                     <p className="text-sm text-gris-tinta/70">{formatEuros(dropoffTotal)} todo incluido</p>
                   )}
@@ -163,9 +165,10 @@ export function CheckoutWizard() {
                   }`}
                 >
                   <p className="text-xs font-bold uppercase tracking-wide text-coral-digital">
-                    Más cómodo
+                    La opción más cómoda
                   </p>
-                  <p className="mt-1 font-bold text-gris-tinta">Recogedlo en mi casa</p>
+                  <p className="mt-1 font-bold text-gris-tinta">Venid a recogerlas</p>
+                  <p className="text-xs text-gris-tinta/50">Pasamos por tu domicilio</p>
                   {pickupTotal !== null && (
                     <p className="text-sm text-gris-tinta/70">{formatEuros(pickupTotal)} todo incluido</p>
                   )}
@@ -182,7 +185,7 @@ export function CheckoutWizard() {
           {step === 2 && (
             <div>
               <h2 className="font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
-                Tus datos
+                ¿Dónde te las devolvemos?
               </h2>
               <div className="mt-5 grid gap-4 sm:grid-cols-2">
                 <Field label="Nombre" value={customer.name} onChange={(v) => setCustomer({ ...customer, name: v })} />
@@ -204,35 +207,40 @@ export function CheckoutWizard() {
           {step === 3 && (
             <form onSubmit={handlePay}>
               <h2 className="font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
-                ¿Quieres también una copia física?
+                ¿Quieres algo más?
               </h2>
-              <div className="mt-4 flex items-center gap-4 rounded-2xl border border-black/10 p-4">
-                <div className="w-20 shrink-0 overflow-hidden rounded-lg">
-                  <Photo
-                    src="/images/unboxing-usb-cliente.webp"
-                    alt="Copia en memoria USB"
-                    width={200}
-                    height={200}
-                    className="h-16 w-20 object-cover"
-                  />
+              <div className="mt-4 flex flex-col gap-4 rounded-2xl border border-black/10 p-4 sm:flex-row sm:items-center">
+                <div className="flex items-center gap-4">
+                  <div className="w-20 shrink-0 overflow-hidden rounded-lg">
+                    <Photo
+                      src="/images/unboxing-usb-cliente.webp"
+                      alt="Copia en memoria USB"
+                      width={200}
+                      height={200}
+                      className="h-16 w-20 object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-bold text-gris-tinta">También en memoria USB</p>
+                    <p className="text-xs text-gris-tinta/60">
+                      Además de la descarga, te enviamos una copia física
+                      junto con tus cintas.
+                    </p>
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <p className="font-bold text-gris-tinta">Copia en memoria USB</p>
-                  <p className="text-xs text-gris-tinta/60">
-                    La enviamos junto con tus cintas originales. Ideal para
-                    guardarla también en un soporte físico o regalarla.
-                  </p>
+                <div className="flex justify-center sm:block sm:shrink-0">
+                  <Counter value={usbCopies} onChange={setUsbCopies} min={0} max={10} />
                 </div>
-                <Counter value={usbCopies} onChange={setUsbCopies} min={0} max={10} />
               </div>
 
               <h2 className="mt-8 font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
-                Revisar y pagar
+                Todo correcto. Solo falta confirmar.
               </h2>
+              <p className="text-xs text-gris-tinta/50">Revisa que esté todo como quieres antes de pagar.</p>
               <div className="mt-4 space-y-1 text-sm text-gris-tinta/70">
                 <p>
                   {tapes} {tapes === 1 ? "cinta" : "cintas"} ·{" "}
-                  {method === "correos" ? "Lo llevo a un punto" : "Recogida en domicilio"}
+                  {method === "correos" ? "Las llevo yo" : "Venid a recogerlas"}
                 </p>
                 <p>
                   {customer.name} {customer.surname} · {customer.email}
@@ -274,9 +282,8 @@ export function CheckoutWizard() {
                 {submitting ? "Procesando…" : `Confirmar pedido · ${formatEuros(pricing.total)}`}
               </button>
               <p className="mt-3 text-center text-xs text-gris-tinta/50">
-                Pago único · Transporte incluido · Te devolvemos los
-                originales · Si una cinta no puede digitalizarse, no te la
-                cobramos.
+                Pago único. Sin suscripciones ni cargos posteriores salvo
+                que tú autorices expresamente algún cambio.
               </p>
             </form>
           )}

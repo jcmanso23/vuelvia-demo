@@ -15,9 +15,8 @@ export function PriceSummary({
 }) {
   return (
     <div className="rounded-2xl border border-black/5 bg-white p-5">
-      <p className="text-sm font-bold text-gris-tinta/60">Total</p>
+      <p className="text-sm font-bold text-gris-tinta/60">Este es tu precio final</p>
       <p className="text-3xl font-bold text-azul-principal">{formatEuros(total)}</p>
-      <p className="text-xs font-semibold text-gris-tinta/50">todo incluido</p>
 
       <ul className="mt-4 space-y-1.5 text-sm text-gris-tinta/75">
         <li className="flex items-center gap-2">
@@ -26,15 +25,15 @@ export function PriceSummary({
         </li>
         <li className="flex items-center gap-2">
           <span className="text-azul-principal">✓</span>
-          Transporte de ida y vuelta
+          Envío hasta Vuelvia
         </li>
         <li className="flex items-center gap-2">
           <span className="text-azul-principal">✓</span>
-          Enlace de descarga de tus vídeos
+          Devolución a tu domicilio
         </li>
         <li className="flex items-center gap-2">
           <span className="text-azul-principal">✓</span>
-          Tus cintas originales, de vuelta a casa
+          Descarga de tus vídeos
         </li>
         {!!usbCopies && usbCopies > 0 && (
           <li className="flex items-center justify-between gap-2 border-t border-black/5 pt-1.5">
@@ -55,8 +54,8 @@ export function PriceSummary({
       )}
 
       <p className="mt-4 border-t border-black/10 pt-3 text-xs text-gris-tinta/60">
-        Pago único, sin cargos posteriores. Si una cinta no puede
-        digitalizarse, no te la cobramos.
+        Pago único, sin sorpresas. Si una cinta no se puede digitalizar, no
+        la pagas.
       </p>
     </div>
   );

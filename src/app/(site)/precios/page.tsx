@@ -19,11 +19,11 @@ export default function PreciosPage() {
     <div>
       <div className="mx-auto max-w-4xl px-6 pt-16 text-center">
         <h1 className="font-[family-name:var(--font-baloo)] text-4xl font-bold text-gris-tinta">
-          Un precio claro desde el principio
+          Lo sabes antes de enviarnos nada.
         </h1>
         <p className="mx-auto mt-4 max-w-xl text-gris-tinta/70">
-          El precio depende únicamente del número de cintas, nunca de la
-          duración, el formato o el contenido. Calcula el tuyo:
+          Elige cuántas cintas tienes y cómo quieres hacérnoslas llegar. Ese
+          será tu precio final.
         </p>
       </div>
 
@@ -37,9 +37,8 @@ export default function PreciosPage() {
             Solo pagas por las cintas que conseguimos digitalizar.
           </p>
           <p className="mt-1 text-sm text-gris-tinta/70">
-            Si una cinta no puede digitalizarse, no te la cobramos: te
-            devolvemos el importe correspondiente y recibes igualmente tu
-            cinta original.
+            Si alguna no se puede recuperar, te devolvemos el importe
+            correspondiente y, por supuesto, también la cinta.
           </p>
         </div>
 
@@ -65,19 +64,19 @@ export default function PreciosPage() {
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-black/5 text-gris-tinta/60">
-                  <th className="px-4 py-3">Cintas</th>
-                  <th className="px-4 py-3">Digitalización</th>
-                  <th className="px-4 py-3">Transporte</th>
-                  <th className="px-4 py-3">Total</th>
+                  <th className="px-4 py-3 whitespace-nowrap">Cintas</th>
+                  <th className="px-4 py-3 whitespace-nowrap">Digitalización</th>
+                  <th className="px-4 py-3 whitespace-nowrap">Transporte</th>
+                  <th className="px-4 py-3 whitespace-nowrap">Total</th>
                 </tr>
               </thead>
               <tbody>
                 {ejemplos.map((e) => (
                   <tr key={e.cintas} className="border-b border-black/5 last:border-0">
-                    <td className="px-4 py-3 font-bold text-gris-tinta">{e.cintas}</td>
-                    <td className="px-4 py-3 text-gris-tinta/70">{e.digitalizacion} €</td>
-                    <td className="px-4 py-3 text-gris-tinta/70">{e.envio} €</td>
-                    <td className="px-4 py-3 font-bold text-azul-principal">{e.total} €</td>
+                    <td className="px-4 py-3 whitespace-nowrap font-bold text-gris-tinta">{e.cintas}</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-gris-tinta/70">{e.digitalizacion} €</td>
+                    <td className="px-4 py-3 whitespace-nowrap text-gris-tinta/70">{e.envio} €</td>
+                    <td className="px-4 py-3 whitespace-nowrap font-bold text-azul-principal">{e.total} €</td>
                   </tr>
                 ))}
               </tbody>

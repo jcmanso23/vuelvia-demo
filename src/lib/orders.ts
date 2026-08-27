@@ -48,15 +48,15 @@ export type Order = {
 const STORAGE_KEY = "vuelvia_orders";
 
 export const STATUS_LABELS: Record<PublicStatus, string> = {
-  confirmado: "Pedido confirmado",
-  "esperando-cintas": "Esperando tus cintas",
-  "en-camino": "En camino a Vuelvia",
-  recibidas: "Cintas recibidas",
-  "en-revision": "En revisión",
-  "en-digitalizacion": "En digitalización",
-  listas: "Listas",
-  enviadas: "Enviadas",
-  entregado: "Entregado",
+  confirmado: "Todo preparado",
+  "esperando-cintas": "Te estamos esperando",
+  "en-camino": "Vienen de camino",
+  recibidas: "Ya las tenemos",
+  "en-revision": "Primer vistazo",
+  "en-digitalizacion": "Estamos haciendo que vuelvan",
+  listas: "Han vuelto",
+  enviadas: "Vuelven a casa",
+  entregado: "Todo de nuevo contigo",
 };
 
 export const STATUS_ORDER: PublicStatus[] = [
@@ -72,15 +72,15 @@ export const STATUS_ORDER: PublicStatus[] = [
 ];
 
 export const STATUS_MESSAGES: Record<PublicStatus, string> = {
-  confirmado: "Hemos recibido tu pedido.",
-  "esperando-cintas": "Prepara el paquete y envíanoslo cuando puedas.",
-  "en-camino": "Tus cintas están viajando hacia nosotros.",
-  recibidas: "Ya tenemos tus cintas y las hemos registrado.",
-  "en-revision": "Estamos comprobando que todo esté correcto.",
-  "en-digitalizacion": "Estamos recuperando tus recuerdos.",
-  listas: "Tus vídeos ya están preparados.",
-  enviadas: "Tus cintas y tu memoria USB vuelven a casa.",
-  entregado: "Tus recuerdos ya están contigo.",
+  confirmado: "Ya puedes hacernos llegar tus cintas.",
+  "esperando-cintas": "Cuando tengas la caja preparada, llévala al punto elegido (o espera la recogida).",
+  "en-camino": "Tus cintas están viajando hacia Vuelvia.",
+  recibidas: "Han llegado bien y ya las hemos registrado.",
+  "en-revision": "Estamos comprobando cada cinta antes de empezar.",
+  "en-digitalizacion": "Tus cintas están pasando a digital.",
+  listas: "Tus vídeos ya están listos para ver y descargar.",
+  enviadas: "Tus cintas originales ya están de camino.",
+  entregado: "Gracias por confiar en Vuelvia.",
 };
 
 function randomDigits(length: number): string {

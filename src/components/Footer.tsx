@@ -37,8 +37,8 @@ export function Footer() {
         <div>
           <Logo />
           <p className="mt-4 max-w-xs text-sm text-gris-tinta/70">
-            Digitalizamos tus cintas de VHS, VHS-C, MiniDV y 8&nbsp;mm con
-            cuidado profesional y entrega segura a domicilio.
+            Pasamos tus cintas VHS, VHS-C, MiniDV y 8&nbsp;mm a digital, y te
+            las devolvemos a casa.
           </p>
         </div>
         {columns.map((col) => (

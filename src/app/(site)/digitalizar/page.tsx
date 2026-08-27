@@ -5,7 +5,7 @@ export default function DigitalizarPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-12">
       <h1 className="text-center font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
-        Digitalizar mis cintas
+        Vamos paso a paso.
       </h1>
       <p className="mx-auto mt-2 max-w-md text-center text-sm text-gris-tinta/60">
         3 pasos, un pago único. Sin necesidad de crear una cuenta.

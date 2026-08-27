@@ -29,9 +29,9 @@ export function CalculatorBlock() {
 
   const volumeMessage =
     config && tapes > config.tier1Max
-      ? `¡Has desbloqueado la tarifa por volumen! Cada cinta adicional cuesta solo ${formatEuros(
+      ? `A partir de aquí, cada cinta te cuesta menos: desde la cinta ${config.tier1Max + 1}, las siguientes cuestan ${formatEuros(
           config.tier2PricePerTape
-        )}.`
+        )} cada una.`
       : null;
 
   return (
@@ -75,9 +75,10 @@ export function CalculatorBlock() {
               }`}
             >
               <p className="text-xs font-bold uppercase tracking-wide text-azul-principal">
-                Más económico
+                La opción más económica
               </p>
-              <p className="mt-1 font-bold text-gris-tinta">Lo llevo a un punto</p>
+              <p className="mt-1 font-bold text-gris-tinta">Las llevo yo</p>
+              <p className="text-xs text-gris-tinta/50">A un punto de entrega cercano</p>
               {dropoffTotal !== null && (
                 <p className="text-sm text-gris-tinta/70">{formatEuros(dropoffTotal)} todo incluido</p>
               )}
@@ -92,9 +93,10 @@ export function CalculatorBlock() {
               }`}
             >
               <p className="text-xs font-bold uppercase tracking-wide text-coral-digital">
-                Más cómodo
+                La opción más cómoda
               </p>
-              <p className="mt-1 font-bold text-gris-tinta">Recogedlo en mi casa</p>
+              <p className="mt-1 font-bold text-gris-tinta">Venid a recogerlas</p>
+              <p className="text-xs text-gris-tinta/50">Pasamos por tu domicilio</p>
               {pickupTotal !== null && (
                 <p className="text-sm text-gris-tinta/70">{formatEuros(pickupTotal)} todo incluido</p>
               )}
@@ -113,8 +115,8 @@ export function CalculatorBlock() {
             Continuar con {tapes} {tapes === 1 ? "cinta" : "cintas"}
           </Link>
           <p className="mt-3 text-center text-xs text-gris-tinta/50">
-            Tus vídeos se entregan mediante enlace de descarga. Tus cintas
-            originales vuelven a tu domicilio.
+            Cuando estén listos, te enviaremos un enlace para descargar tus
+            vídeos. Y tus cintas originales volverán a casa.
           </p>
         </div>
       </div>

@@ -12,30 +12,30 @@ const pasos = [
   {
     numero: "1",
     titulo: "Las preparas",
-    descripcion: "Eliges cuántas cintas y cómo nos las haces llegar. La web calcula el precio al instante.",
+    descripcion: "Dinos cuántas tienes y elige si las llevas a un punto o pasamos a recogerlas.",
   },
   {
     numero: "2",
-    titulo: "Nos llegan",
-    descripcion: "Las recibimos, contamos y fotografiamos. Te avisamos en cuanto están con nosotros.",
+    titulo: "Las recibimos",
+    descripcion: "Las contamos, fotografiamos y te avisamos en cuanto están con nosotros.",
   },
   {
     numero: "3",
     titulo: "Las digitalizamos",
-    descripcion: "Revisamos y convertimos cada cinta a un archivo de vídeo con cuidado.",
+    descripcion: "Las revisamos y convertimos en archivos digitales, una a una.",
   },
   {
     numero: "4",
-    titulo: "Descargas y recibes tus originales",
-    descripcion: "Te avisamos por email con tu enlace de descarga. Tus cintas vuelven a casa.",
+    titulo: "Vuelven a casa",
+    descripcion: "Descargas tus vídeos y tus cintas originales vuelven a tu domicilio.",
   },
 ];
 
 const formatos = [
-  { nombre: "VHS", detalle: "El formato más habitual en los hogares españoles." },
-  { nombre: "VHS-C", detalle: "El formato compacto de las videocámaras familiares." },
-  { nombre: "MiniDV", detalle: "Cintas digitales de cámaras de los 2000." },
-  { nombre: "8 mm", detalle: "Cintas pequeñas de cámaras de vídeo antiguas." },
+  { nombre: "VHS", detalle: "Las grandes. Las que estaban junto al vídeo del salón." },
+  { nombre: "VHS-C", detalle: "Más pequeñas, muy habituales en videocámaras familiares." },
+  { nombre: "MiniDV", detalle: "Las pequeñas cintas digitales que dominaron muchas videocámaras de los 2000." },
+  { nombre: "8 mm", detalle: "Otro clásico de las videocámaras domésticas." },
 ];
 
 export default function Home() {
@@ -50,16 +50,15 @@ export default function Home() {
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div>
               <p className="text-sm font-bold uppercase tracking-wide text-azul-principal">
-                Tus cintas son únicas. Nuestro proceso también.
+                Sabemos lo que llevas dentro de esa caja.
               </p>
               <h2 className="mt-2 font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
                 No son solo cintas. Son tus recuerdos.
               </h2>
               <p className="mt-4 text-gris-tinta/75">
-                Sabemos que muchas de estas cintas son copias únicas e
-                irremplazables. Por eso las fotografiamos y contamos al
-                recibirlas, las identificamos en cada paso, y siempre te
-                devolvemos los originales.
+                Algunas llevan años guardadas y puede que no exista otra
+                copia. Por eso, cuando llegan, las contamos, fotografiamos y
+                dejamos identificadas antes de empezar.
               </p>
               <TrustBadges className="mt-6" />
               <Link
@@ -107,16 +106,16 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2">
           <div>
             <h2 className="font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
-              Tus recuerdos, disponibles desde cualquier dispositivo.
+              Tus vídeos vuelven antes que tus cintas.
             </h2>
             <p className="mt-4 text-gris-tinta/75">
-              En cuanto terminamos de digitalizar tus cintas, recibes un
-              enlace privado para ver y descargar tus vídeos, sin esperar a
-              que las cintas físicas vuelvan a casa.
+              En cuanto terminamos, te enviamos un enlace privado para verlos
+              y descargarlos. No hace falta esperar a que el paquete de
+              vuelta llegue a casa.
             </p>
             <p className="mt-3 text-sm font-semibold text-gris-tinta/60">
-              ¿Prefieres además una copia en memoria USB? Puedes añadirla como
-              extra al hacer tu pedido.
+              ¿Los quieres también en una memoria USB? Puedes añadirla al
+              pedido y te la enviaremos con tus cintas.
             </p>
           </div>
           <DownloadMockup />
@@ -157,13 +156,18 @@ export default function Home() {
       <section className="py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
-            Vuelve a ver lo que creías perdido.
+            Hay cosas que merecen volver a verse.
           </h2>
           <p className="mt-4 text-gris-tinta/75">
-            Una boda, un cumpleaños, la voz de alguien que ya no está. Cada
-            cinta guarda algo que merece volver a verse. Las cintas magnéticas
-            se deterioran con el tiempo — haz que vuelvan antes de que sea más
-            difícil recuperarlas.
+            Una boda. Un cumpleaños. Un verano que parecía eterno. La voz de
+            alguien que echas de menos. A veces todo eso sigue ahí, dentro de
+            una cinta que lleva veinte años en un cajón.
+          </p>
+          <p className="mt-3 font-semibold text-gris-tinta/75">
+            Nosotros ponemos la parte técnica. Tú recuperas lo importante.
+          </p>
+          <p className="mt-4 text-sm text-gris-tinta/50">
+            Las cintas envejecen. Los recuerdos no deberían hacerlo con ellas.
           </p>
         </div>
       </section>
@@ -172,8 +176,12 @@ export default function Home() {
       <section id="precio" className="border-y border-black/5 bg-white py-16">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
-            Un precio claro desde el principio
+            Lo sabes antes de enviarnos nada.
           </h2>
+          <p className="mt-2 text-gris-tinta/60">
+            Elige cuántas cintas tienes y cómo quieres hacérnoslas llegar. Ese
+            será tu precio final.
+          </p>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             <div className="rounded-2xl bg-gris-niebla p-6">
               <p className="text-3xl font-bold text-azul-principal">10 €</p>
@@ -197,7 +205,8 @@ export default function Home() {
               Solo pagas por las cintas que conseguimos digitalizar.
             </p>
             <p className="mt-1 text-sm text-gris-tinta/70">
-              Si alguna no puede digitalizarse, no te la cobramos.
+              Si alguna no se puede recuperar, te devolvemos el importe
+              correspondiente y, por supuesto, también la cinta.
             </p>
           </div>
           <Link

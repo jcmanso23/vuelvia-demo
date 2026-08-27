@@ -10,23 +10,20 @@ export const metadata: Metadata = {
 const formatos = [
   {
     nombre: "VHS",
-    descripcion:
-      "El formato más habitual en los hogares españoles durante los años 80, 90 y 2000. Si tienes una cinta grande de plástico negro, casi seguro que es esta.",
+    descripcion: "Las grandes. Las que estaban junto al vídeo del salón.",
   },
   {
     nombre: "VHS-C",
-    descripcion:
-      "El formato compacto que se usaba en las videocámaras familiares. Es como un VHS en miniatura, pensado para cámaras portátiles.",
+    descripcion: "Más pequeñas, muy habituales en videocámaras familiares.",
   },
   {
     nombre: "MiniDV",
     descripcion:
-      "Cintas digitales, más pequeñas, habituales en cámaras de vídeo de los años 2000.",
+      "Las pequeñas cintas digitales que dominaron muchas videocámaras de los 2000.",
   },
   {
     nombre: "8 mm",
-    descripcion:
-      "Cintas pequeñas de cámaras de vídeo antiguas. Aceptamos este formato sin necesidad de que sepas la variante exacta.",
+    descripcion: "Otro clásico de las videocámaras domésticas.",
   },
 ];
 
@@ -34,7 +31,7 @@ export default function QueDigitalizamosPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
       <h1 className="text-center font-[family-name:var(--font-baloo)] text-4xl font-bold text-gris-tinta">
-        Qué digitalizamos
+        Qué cintas digitalizamos
       </h1>
       <p className="mx-auto mt-4 max-w-2xl text-center text-gris-tinta/70">
         No necesitas saber exactamente qué tipo de cinta tienes. Si no lo
@@ -65,7 +62,8 @@ export default function QueDigitalizamosPage() {
 
       <div className="mt-10 rounded-2xl bg-naranja-luz/15 p-6 text-center">
         <p className="font-bold text-gris-tinta">
-          Beta / Betamax no está disponible actualmente.
+          ¿Es Beta? De momento no podemos digitalizarla, pero escríbenos y te
+          orientamos.
         </p>
       </div>
 
@@ -83,10 +81,10 @@ export default function QueDigitalizamosPage() {
 
       <div className="mt-12 text-center">
         <Link
-          href="/digitalizar"
+          href="/#calculadora"
           className="inline-block rounded-full bg-azul-principal px-8 py-4 font-bold text-white transition hover:bg-azul-noche"
         >
-          Digitalizar mis cintas
+          Calcular mi precio
         </Link>
       </div>
     </div>

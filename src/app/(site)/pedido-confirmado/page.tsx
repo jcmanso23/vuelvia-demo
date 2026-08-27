@@ -48,10 +48,10 @@ function Confirmation() {
       <div className="text-center">
         <span className="text-5xl">🎉</span>
         <h1 className="mt-3 font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
-          ¡Perfecto! Ya está todo preparado.
+          Ya está. Ahora prepara tus cintas.
         </h1>
         <p className="mt-2 text-gris-tinta/70">
-          Ahora solo tienes que preparar tus cintas y hacérnoslas llegar.
+          Te explicamos exactamente qué hacer para que lleguen bien.
         </p>
       </div>
 
@@ -63,7 +63,7 @@ function Confirmation() {
           {formatEuros(order.pricing.total)}
         </p>
         <p className="mt-1 text-sm font-semibold text-gris-tinta">
-          Elegiste: {order.inboundMethod === "correos" ? "Lo llevo a un punto" : "Recogida en domicilio"}
+          Elegiste: {order.inboundMethod === "correos" ? "Las llevo yo" : "Venid a recogerlas"}
         </p>
         <p className="mt-3 text-xs text-gris-tinta/50">
           Cuando terminemos, te avisaremos por email con tu enlace de
@@ -76,7 +76,7 @@ function Confirmation() {
           onClick={() => setShowInstructions((v) => !v)}
           className="rounded-full border-2 border-azul-principal px-6 py-3 font-bold text-azul-principal hover:bg-azul-suave/40"
         >
-          Ver instrucciones de envío
+          Ver cómo prepararlas
         </button>
         <Link
           href={`/pedido?code=${order.code}`}
