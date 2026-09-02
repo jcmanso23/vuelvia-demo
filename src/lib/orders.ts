@@ -43,6 +43,8 @@ export type Order = {
   estimatedDays: number;
   status: PublicStatus;
   isDemo?: boolean;
+  /** true si el pedido viene de la base de datos real, no de localStorage. */
+  isRemote?: boolean;
 };
 
 const STORAGE_KEY = "vuelvia_orders";

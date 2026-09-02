@@ -2,21 +2,23 @@
 
 import { useEffect, useState } from "react";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { AdminTokenGate } from "@/components/admin/AdminTokenGate";
 import {
   calculateTotal,
   DEFAULT_PRICING,
   formatEuros,
-  loadPricingConfig,
-  PricingConfig,
   savePricingConfig,
+  PricingConfig,
 } from "@/lib/pricing";
+import { loadRemotePricingConfig, savePricingConfigAdmin } from "@/lib/api";
 
-export default function AdminPreciosPage() {
+function PreciosForm({ token }: { token: string }) {
   const [config, setConfig] = useState<PricingConfig>(DEFAULT_PRICING);
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    setConfig(loadPricingConfig());
+    loadRemotePricingConfig().then(setConfig);
   }, []);
 
   function update<K extends keyof PricingConfig>(key: K, value: PricingConfig[K]) {
@@ -24,18 +26,18 @@ export default function AdminPreciosPage() {
     setSaved(false);
   }
 
-  function handleSave() {
-    savePricingConfig(config);
+  async function handleSave() {
+    setSaving(true);
+    const ok = await savePricingConfigAdmin(config, token);
+    if (!ok) savePricingConfig(config); // sin backend: guarda solo en este navegador
+    setSaving(false);
     setSaved(true);
   }
 
   const example = calculateTotal(15, "correos", 0, config);
 
   return (
-    <AdminShell>
-      <h1 className="font-[family-name:var(--font-baloo)] text-2xl font-bold text-gris-tinta">
-        Configuración de precios
-      </h1>
+    <>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <div className="space-y-6 rounded-2xl bg-white p-6">
@@ -89,9 +91,10 @@ export default function AdminPreciosPage() {
 
           <button
             onClick={handleSave}
-            className="w-full rounded-full bg-azul-noche px-6 py-3 font-bold text-white hover:opacity-90"
+            disabled={saving}
+            className="w-full rounded-full bg-azul-noche px-6 py-3 font-bold text-white hover:opacity-90 disabled:opacity-60"
           >
-            Guardar cambios
+            {saving ? "Guardando…" : "Guardar cambios"}
           </button>
           {saved && (
             <p className="text-center text-sm font-semibold text-azul-noche">
@@ -118,6 +121,17 @@ export default function AdminPreciosPage() {
           </div>
         </div>
       </div>
+    </>
+  );
+}
+
+export default function AdminPreciosPage() {
+  return (
+    <AdminShell>
+      <h1 className="font-[family-name:var(--font-baloo)] text-2xl font-bold text-gris-tinta">
+        Configuración de precios
+      </h1>
+      <AdminTokenGate>{(token) => <PreciosForm token={token} />}</AdminTokenGate>
     </AdminShell>
   );
 }

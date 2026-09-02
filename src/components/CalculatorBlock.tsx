@@ -3,13 +3,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Counter } from "./Counter";
-import {
-  calculateTotal,
-  formatEuros,
-  loadPricingConfig,
-  PricingConfig,
-} from "@/lib/pricing";
+import { calculateTotal, formatEuros, PricingConfig } from "@/lib/pricing";
 import type { InboundMethod } from "@/lib/orders";
+import { loadRemotePricingConfig } from "@/lib/api";
 import { PriceSummary } from "./PriceSummary";
 
 const QUICK_AMOUNTS = [3, 5, 10, 15];
@@ -20,7 +16,7 @@ export function CalculatorBlock() {
   const [config, setConfig] = useState<PricingConfig | null>(null);
 
   useEffect(() => {
-    setConfig(loadPricingConfig());
+    loadRemotePricingConfig().then(setConfig);
   }, []);
 
   const pricing = config ? calculateTotal(tapes, method, 0, config) : null;

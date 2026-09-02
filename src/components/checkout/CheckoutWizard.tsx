@@ -6,18 +6,9 @@ import { Counter } from "@/components/Counter";
 import { PriceSummary } from "@/components/PriceSummary";
 import { Photo } from "@/components/Photo";
 import { StepIndicator } from "./StepIndicator";
-import {
-  calculateTotal,
-  formatEuros,
-  loadPricingConfig,
-  PricingConfig,
-} from "@/lib/pricing";
-import {
-  createOrderFromCheckout,
-  saveOrder,
-  Customer,
-  InboundMethod,
-} from "@/lib/orders";
+import { calculateTotal, formatEuros, PricingConfig } from "@/lib/pricing";
+import { Customer, InboundMethod } from "@/lib/orders";
+import { loadRemotePricingConfig, submitOrder, createStripeCheckoutSession } from "@/lib/api";
 
 const EMPTY_CUSTOMER: Customer = {
   name: "",
@@ -45,7 +36,7 @@ export function CheckoutWizard() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setConfig(loadPricingConfig());
+    loadRemotePricingConfig().then(setConfig);
     const paramTapes = Number(searchParams.get("cintas"));
     if (paramTapes > 0) setTapes(paramTapes);
     const paramMethod = searchParams.get("metodo");
@@ -91,18 +82,13 @@ export function CheckoutWizard() {
 
   async function handlePay(e: React.FormEvent) {
     e.preventDefault();
-    if (!config) return;
+    if (!config || !pricing) return;
     setSubmitting(true);
     setError(null);
 
-    // Punto de integración real de Stripe:
-    // aquí se llamaría a un endpoint backend que cree una Stripe Checkout
-    // Session (o Payment Intent) con el importe `pricing.total` y se
-    // redirigiría a Stripe. Como esto es una demo sin backend ni claves
-    // reales, simulamos el pago localmente.
-    await new Promise((resolve) => setTimeout(resolve, 1400));
-
-    const order = createOrderFromCheckout({
+    // El pedido se crea siempre primero (backend real si está disponible,
+    // localStorage si no) para no perderlo si el pago falla o se cancela.
+    const order = await submitOrder({
       tapeCount: tapes,
       formats: ["no-lo-se"],
       usbCopies,
@@ -110,7 +96,21 @@ export function CheckoutWizard() {
       customer,
       pricingConfig: config,
     });
-    saveOrder(order);
+
+    // Si Stripe está configurado en el backend, vamos a pagar de verdad.
+    const stripeUrl = await createStripeCheckoutSession({
+      orderCode: order.code,
+      total: pricing.total,
+      customerEmail: customer.email,
+      tapeCount: tapes,
+    });
+    if (stripeUrl) {
+      window.location.href = stripeUrl;
+      return;
+    }
+
+    // Sin Stripe configurado todavía: simulamos el pago para la demo.
+    await new Promise((resolve) => setTimeout(resolve, 1400));
     setSubmitting(false);
     router.push(`/pedido-confirmado?code=${order.code}`);
   }

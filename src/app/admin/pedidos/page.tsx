@@ -3,21 +3,34 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { AdminTokenGate } from "@/components/admin/AdminTokenGate";
 import { DEMO_ORDERS, loadOrders, Order, STATUS_LABELS } from "@/lib/orders";
+import { fetchOrdersAdmin } from "@/lib/api";
 import { formatEuros } from "@/lib/pricing";
 
-export default function AdminPedidosPage() {
+function PedidosTable({ token }: { token: string }) {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [source, setSource] = useState<"remote" | "local">("local");
 
   useEffect(() => {
-    setOrders([...loadOrders(), ...DEMO_ORDERS]);
-  }, []);
+    fetchOrdersAdmin(token).then((remote) => {
+      if (remote && remote.length > 0) {
+        setOrders([...remote, ...DEMO_ORDERS]);
+        setSource("remote");
+      } else {
+        setOrders([...loadOrders(), ...DEMO_ORDERS]);
+        setSource("local");
+      }
+    });
+  }, [token]);
 
   return (
-    <AdminShell>
-      <h1 className="font-[family-name:var(--font-baloo)] text-2xl font-bold text-gris-tinta">
-        Pedidos
-      </h1>
+    <>
+      <p className="mt-1 text-sm text-gris-tinta/70">
+        {source === "remote"
+          ? "Mostrando pedidos reales de la base de datos."
+          : "Sin backend conectado todavía — mostrando pedidos guardados en este navegador."}
+      </p>
       <div className="mt-6 overflow-x-auto rounded-2xl bg-white">
         <table className="w-full min-w-[720px] text-left text-sm">
           <thead>
@@ -65,6 +78,17 @@ export default function AdminPedidosPage() {
           </tbody>
         </table>
       </div>
+    </>
+  );
+}
+
+export default function AdminPedidosPage() {
+  return (
+    <AdminShell>
+      <h1 className="font-[family-name:var(--font-baloo)] text-2xl font-bold text-gris-tinta">
+        Pedidos
+      </h1>
+      <AdminTokenGate>{(token) => <PedidosTable token={token} />}</AdminTokenGate>
     </AdminShell>
   );
 }

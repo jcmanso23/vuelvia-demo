@@ -3,8 +3,9 @@
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { findOrder, Order } from "@/lib/orders";
+import { Order } from "@/lib/orders";
 import { formatEuros } from "@/lib/pricing";
+import { fetchOrder } from "@/lib/api";
 
 const embalaje = [
   "Utiliza una caja resistente.",
@@ -25,7 +26,7 @@ function Confirmation() {
   const [showInstructions, setShowInstructions] = useState(false);
 
   useEffect(() => {
-    if (code) setOrder(findOrder(code) ?? null);
+    if (code) fetchOrder(code).then(setOrder);
   }, [code]);
 
   if (order === undefined) {

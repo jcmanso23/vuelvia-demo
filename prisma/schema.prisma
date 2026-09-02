@@ -1,0 +1,104 @@
+// Esquema de datos real de Vuelvia.
+// Cubre lo que ya usa el checkout/admin de la web. Tape, Shipment,
+// Incident y Refund quedan modelados para cuando se construya el
+// backoffice de recepción (brief secciones 27-29, 73-83); por ahora el
+// pedido guarda snapshots suficientes para operar sin ellas.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum InboundMethod {
+  correos
+  domicilio
+}
+
+enum PublicStatus {
+  confirmado
+  esperando_cintas
+  en_camino
+  recibidas
+  en_revision
+  en_digitalizacion
+  listas
+  enviadas
+  entregado
+}
+
+model Order {
+  id             String        @id @default(cuid())
+  code           String        @unique
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+
+  tapeCount      Int
+  formats        String[]
+  usbCopies      Int           @default(0)
+  inboundMethod  InboundMethod
+
+  customerName     String
+  customerSurname  String
+  customerEmail    String
+  customerPhone    String
+  customerAddress  String
+  customerPostal   String
+  customerCity     String
+  customerProvince String
+
+  digitization   Int
+  shipping       Int
+  usbExtra       Int
+  total          Int
+
+  estimatedDays  Int
+  status         PublicStatus  @default(confirmado)
+
+  stripePaymentIntentId String?
+  stripeCheckoutSessionId String?
+  paidAt         DateTime?
+
+  incidents      Incident[]
+  refunds        Refund[]
+
+  @@index([customerEmail])
+}
+
+model Incident {
+  id          String   @id @default(cuid())
+  orderId     String
+  order       Order    @relation(fields: [orderId], references: [id])
+  type        String
+  description String
+  createdAt   DateTime @default(now())
+  resolvedAt  DateTime?
+}
+
+model Refund {
+  id        String   @id @default(cuid())
+  orderId   String
+  order     Order    @relation(fields: [orderId], references: [id])
+  amount    Int
+  reason    String
+  createdAt DateTime @default(now())
+}
+
+// Configuración de precios editable desde /admin/precios.
+// Fila única (id fijo "default").
+model PricingConfig {
+  id                     String  @id @default("default")
+  tier1PricePerTape      Int
+  tier1Max               Int
+  tier2PricePerTape      Int
+  dropoffRoundTrip       Int
+  homePickupRoundTrip    Int
+  usbExtraPrice          Int?
+  estimatedDaysNormal    Int
+  estimatedDaysHighDemand Int
+  highDemandMode         Boolean @default(false)
+  updatedAt              DateTime @updatedAt
+}

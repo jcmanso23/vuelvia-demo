@@ -4,14 +4,9 @@ import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Timeline } from "@/components/Timeline";
-import {
-  findOrder,
-  Order,
-  STATUS_MESSAGES,
-  STATUS_ORDER,
-  updateOrderStatus,
-} from "@/lib/orders";
+import { Order, STATUS_MESSAGES, STATUS_ORDER, updateOrderStatus } from "@/lib/orders";
 import { formatEuros } from "@/lib/pricing";
+import { fetchOrder } from "@/lib/api";
 
 function LookupForm() {
   const router = useRouter();
@@ -65,7 +60,7 @@ function OrderTracking({ code }: { code: string }) {
   const [order, setOrder] = useState<Order | null | undefined>(undefined);
 
   useEffect(() => {
-    setOrder(findOrder(code) ?? null);
+    fetchOrder(code).then(setOrder);
   }, [code]);
 
   if (order === undefined) return <p className="text-center text-gris-tinta/70">Buscando…</p>;
@@ -133,7 +128,12 @@ function OrderTracking({ code }: { code: string }) {
               Pedido de ejemplo — su estado no cambia.
             </p>
           )}
-          {!order.isDemo && nextStatus && (
+          {order.isRemote && !order.isDemo && nextStatus && (
+            <p className="mt-4 text-xs text-gris-tinta/70">
+              El equipo de Vuelvia actualiza este estado a medida que avanza tu pedido.
+            </p>
+          )}
+          {!order.isDemo && !order.isRemote && nextStatus && (
             <button
               onClick={() => {
                 updateOrderStatus(order.code, nextStatus);
