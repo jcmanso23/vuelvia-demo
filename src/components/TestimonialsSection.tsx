@@ -27,7 +27,7 @@ export function TestimonialsSection() {
     <section className="py-16">
       <div className="mx-auto max-w-5xl px-6">
         <div className="text-center">
-          <p className="text-sm font-bold uppercase tracking-wide text-azul-principal">
+          <p className="text-sm font-bold uppercase tracking-wide text-azul-noche">
             Experiencia
           </p>
           <h2 className="mt-2 font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
@@ -47,7 +47,7 @@ export function TestimonialsSection() {
             <p className="text-sm font-semibold text-gris-tinta/70">
               cintas digitalizadas en los últimos 8 años
             </p>
-            <p className="mt-1 text-[11px] text-gris-tinta/40">
+            <p className="mt-1 text-[11px] text-gris-tinta/70">
               Cifra estimada de ejemplo — pendiente de confirmar con datos reales antes de publicar en producción.
             </p>
           </div>
@@ -60,11 +60,11 @@ export function TestimonialsSection() {
           {testimonios.map((t) => (
             <div key={t.texto} className="rounded-2xl bg-white p-5">
               <p className="text-sm text-gris-tinta/75">&ldquo;{t.texto}&rdquo;</p>
-              <p className="mt-3 text-xs font-bold text-gris-tinta/40">{t.autor}</p>
+              <p className="mt-3 text-xs font-bold text-gris-tinta/70">{t.autor}</p>
             </div>
           ))}
         </div>
-        <p className="mt-4 text-center text-xs text-gris-tinta/40">
+        <p className="mt-4 text-center text-xs text-gris-tinta/70">
           Testimonios de ejemplo para ilustrar el diseño — se sustituirán por
           opiniones reales y verificadas antes del lanzamiento.
         </p>

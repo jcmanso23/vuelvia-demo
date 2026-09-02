@@ -14,7 +14,7 @@ export function Timeline({ status }: { status: PublicStatus }) {
             {!isLast && (
               <span
                 className={`absolute left-[15px] top-8 h-full w-0.5 ${
-                  done ? "bg-azul-principal" : "bg-black/10"
+                  done ? "bg-azul-noche" : "bg-black/10"
                 }`}
                 aria-hidden
               />
@@ -22,10 +22,10 @@ export function Timeline({ status }: { status: PublicStatus }) {
             <span
               className={`z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-bold ${
                 done
-                  ? "border-azul-principal bg-azul-principal text-white"
+                  ? "border-azul-noche bg-azul-noche text-white"
                   : current
-                    ? "border-azul-principal bg-white text-azul-principal"
-                    : "border-black/15 bg-white text-black/30"
+                    ? "border-azul-noche bg-white text-azul-noche"
+                    : "border-black/15 bg-white text-black/60"
               }`}
             >
               {done ? "✓" : index + 1}
@@ -33,7 +33,7 @@ export function Timeline({ status }: { status: PublicStatus }) {
             <div className="pt-0.5">
               <p
                 className={`font-bold ${
-                  done || current ? "text-gris-tinta" : "text-gris-tinta/40"
+                  done || current ? "text-gris-tinta" : "text-gris-tinta/70"
                 }`}
               >
                 {STATUS_LABELS[step]}

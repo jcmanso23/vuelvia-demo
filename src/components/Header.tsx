@@ -27,7 +27,7 @@ export function Header() {
           </Link>
           <Link
             href="/contacto"
-            className="text-sm font-semibold text-gris-tinta/60 hover:text-azul-principal"
+            className="text-sm font-semibold text-gris-tinta/70 hover:underline"
           >
             Necesito ayuda
           </Link>
@@ -44,7 +44,7 @@ export function Header() {
         </Link>
         <div className="hidden items-center gap-7 text-sm font-semibold text-gris-tinta md:flex">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-azul-principal">
+            <Link key={link.href} href={link.href} className="hover:underline">
               {link.label}
             </Link>
           ))}
@@ -52,7 +52,7 @@ export function Header() {
         <div className="hidden md:block">
           <Link
             href="/digitalizar"
-            className="rounded-full bg-azul-principal px-5 py-2.5 text-sm font-bold text-white transition hover:bg-azul-noche"
+            className="rounded-full bg-azul-noche px-5 py-2.5 text-sm font-bold text-white transition hover:opacity-90"
           >
             Calcular mi precio
           </Link>
@@ -73,7 +73,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="hover:text-azul-principal"
+                className="hover:underline"
               >
                 {link.label}
               </Link>
@@ -81,7 +81,7 @@ export function Header() {
             <Link
               href="/digitalizar"
               onClick={() => setOpen(false)}
-              className="rounded-full bg-azul-principal px-5 py-3 text-center font-bold text-white"
+              className="rounded-full bg-azul-noche px-5 py-3 text-center font-bold text-white"
             >
               Calcular mi precio
             </Link>

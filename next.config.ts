@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
   assetPrefix: isGithubPages ? `/${repoName}/` : "",
   env: {
     NEXT_PUBLIC_BASE_PATH: isGithubPages ? `/${repoName}` : "",
+    NEXT_PUBLIC_SITE_URL: isGithubPages
+      ? `https://jcmanso23.github.io/${repoName}`
+      : "http://localhost:3100",
   },
 };
 

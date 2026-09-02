@@ -50,10 +50,12 @@ export function CalculatorBlock() {
                 key={n}
                 type="button"
                 onClick={() => setTapes(n)}
+                aria-pressed={tapes === n}
+                aria-label={`${n} cintas`}
                 className={`rounded-full px-3 py-1 text-xs font-bold transition ${
                   tapes === n
-                    ? "bg-azul-principal text-white"
-                    : "bg-white text-gris-tinta/60 hover:text-azul-principal"
+                    ? "bg-azul-noche text-white"
+                    : "bg-white text-gris-tinta/70 hover:underline"
                 }`}
               >
                 {n}
@@ -68,17 +70,18 @@ export function CalculatorBlock() {
             <button
               type="button"
               onClick={() => setMethod("correos")}
+              aria-pressed={method === "correos"}
               className={`rounded-2xl border-2 p-4 text-left transition ${
                 method === "correos"
-                  ? "border-azul-principal bg-azul-suave/50"
+                  ? "border-azul-noche bg-azul-suave/50"
                   : "border-black/10 bg-white hover:border-azul-principal/50"
               }`}
             >
-              <p className="text-xs font-bold uppercase tracking-wide text-azul-principal">
+              <p className="text-xs font-bold uppercase tracking-wide text-azul-noche">
                 La opción más económica
               </p>
               <p className="mt-1 font-bold text-gris-tinta">Las llevo yo</p>
-              <p className="text-xs text-gris-tinta/50">A un punto de entrega cercano</p>
+              <p className="text-xs text-gris-tinta/70">A un punto de entrega cercano</p>
               {dropoffTotal !== null && (
                 <p className="text-sm text-gris-tinta/70">{formatEuros(dropoffTotal)} todo incluido</p>
               )}
@@ -86,9 +89,10 @@ export function CalculatorBlock() {
             <button
               type="button"
               onClick={() => setMethod("domicilio")}
+              aria-pressed={method === "domicilio"}
               className={`rounded-2xl border-2 p-4 text-left transition ${
                 method === "domicilio"
-                  ? "border-azul-principal bg-azul-suave/50"
+                  ? "border-azul-noche bg-azul-suave/50"
                   : "border-black/10 bg-white hover:border-azul-principal/50"
               }`}
             >
@@ -96,7 +100,7 @@ export function CalculatorBlock() {
                 La opción más cómoda
               </p>
               <p className="mt-1 font-bold text-gris-tinta">Venid a recogerlas</p>
-              <p className="text-xs text-gris-tinta/50">Pasamos por tu domicilio</p>
+              <p className="text-xs text-gris-tinta/70">Pasamos por tu domicilio</p>
               {pickupTotal !== null && (
                 <p className="text-sm text-gris-tinta/70">{formatEuros(pickupTotal)} todo incluido</p>
               )}
@@ -110,11 +114,11 @@ export function CalculatorBlock() {
           )}
           <Link
             href={`/digitalizar?cintas=${tapes}&metodo=${method}`}
-            className="mt-5 block rounded-full bg-azul-principal px-6 py-3 text-center font-bold text-white transition hover:bg-azul-noche"
+            className="mt-5 block rounded-full bg-azul-noche px-6 py-3 text-center font-bold text-white transition hover:opacity-90"
           >
             Continuar con {tapes} {tapes === 1 ? "cinta" : "cintas"}
           </Link>
-          <p className="mt-3 text-center text-xs text-gris-tinta/50">
+          <p className="mt-3 text-center text-xs text-gris-tinta/70">
             Tus vídeos y tus cintas originales vuelven juntos a casa, en una
             memoria USB lista para reproducir.
           </p>

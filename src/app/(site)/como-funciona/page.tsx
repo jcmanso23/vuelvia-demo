@@ -67,7 +67,7 @@ export default function ComoFuncionaPage() {
       <ol className="mt-12 space-y-8">
         {pasos.map((paso) => (
           <li key={paso.numero} className="flex gap-5 rounded-2xl bg-white p-5">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-azul-principal font-bold text-white">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-azul-noche font-bold text-white">
               {paso.numero}
             </span>
             <div>
@@ -104,7 +104,7 @@ export default function ComoFuncionaPage() {
       <div className="mt-12 text-center">
         <Link
           href="/#calculadora"
-          className="inline-block rounded-full bg-azul-principal px-8 py-4 font-bold text-white transition hover:bg-azul-noche"
+          className="inline-block rounded-full bg-azul-noche px-8 py-4 font-bold text-white transition hover:opacity-90"
         >
           Calcular mi precio
         </Link>

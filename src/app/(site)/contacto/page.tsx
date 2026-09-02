@@ -30,12 +30,12 @@ export default function ContactoPage() {
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <div className="rounded-2xl bg-white p-5 text-center">
-          <p className="text-sm font-bold text-gris-tinta/60">Email</p>
-          <p className="mt-1 font-bold text-azul-principal">{CONTACT_EMAIL}</p>
+          <p className="text-sm font-bold text-gris-tinta/70">Email</p>
+          <p className="mt-1 font-bold text-azul-noche">{CONTACT_EMAIL}</p>
         </div>
         <div className="rounded-2xl bg-white p-5 text-center">
-          <p className="text-sm font-bold text-gris-tinta/60">Seguimiento de pedido</p>
-          <a href="/pedido" className="mt-1 inline-block font-bold text-azul-principal hover:text-azul-noche">
+          <p className="text-sm font-bold text-gris-tinta/70">Seguimiento de pedido</p>
+          <a href="/pedido" className="mt-1 inline-block font-bold text-azul-noche hover:underline">
             Ver estado de mi pedido →
           </a>
         </div>
@@ -48,7 +48,7 @@ export default function ContactoPage() {
             required
             value={form.nombre}
             onChange={(e) => setForm({ ...form, nombre: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-principal focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-noche focus:outline-none focus:ring-2 focus:ring-azul-principal/30"
           />
         </div>
         <div>
@@ -58,18 +58,18 @@ export default function ContactoPage() {
             type="email"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-principal focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-noche focus:outline-none focus:ring-2 focus:ring-azul-principal/30"
           />
         </div>
         <div>
           <label className="text-sm font-bold text-gris-tinta">
-            Número de pedido <span className="font-normal text-gris-tinta/50">(si tienes uno)</span>
+            Número de pedido <span className="font-normal text-gris-tinta/70">(si tienes uno)</span>
           </label>
           <input
             value={form.pedido}
             onChange={(e) => setForm({ ...form, pedido: e.target.value })}
             placeholder="VLV-2026XXXXX"
-            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-principal focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-noche focus:outline-none focus:ring-2 focus:ring-azul-principal/30"
           />
         </div>
         <div>
@@ -79,12 +79,12 @@ export default function ContactoPage() {
             rows={4}
             value={form.mensaje}
             onChange={(e) => setForm({ ...form, mensaje: e.target.value })}
-            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-principal focus:outline-none"
+            className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 focus:border-azul-noche focus:outline-none focus:ring-2 focus:ring-azul-principal/30"
           />
         </div>
         <button
           type="submit"
-          className="w-full rounded-full bg-azul-principal px-6 py-3 font-bold text-white transition hover:bg-azul-noche"
+          className="w-full rounded-full bg-azul-noche px-6 py-3 font-bold text-white transition hover:opacity-90"
         >
           Escribir a Vuelvia
         </button>

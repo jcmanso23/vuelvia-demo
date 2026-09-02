@@ -20,7 +20,7 @@ export function FAQAccordion({ items }: { items: FAQItem[] }) {
             >
               <span>{item.question}</span>
               <span
-                className={`shrink-0 text-azul-principal transition-transform ${isOpen ? "rotate-45" : ""}`}
+                className={`shrink-0 text-azul-noche transition-transform ${isOpen ? "rotate-45" : ""}`}
                 aria-hidden
               >
                 +

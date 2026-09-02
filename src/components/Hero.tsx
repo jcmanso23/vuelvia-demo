@@ -7,7 +7,7 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-2 md:py-20">
         <div>
           <h1 className="font-[family-name:var(--font-baloo)] text-4xl font-bold leading-tight text-gris-tinta md:text-5xl">
-            Tus recuerdos <span className="text-azul-principal">merecen volver.</span>
+            Tus recuerdos <span className="text-azul-noche">merecen volver.</span>
           </h1>
           <p className="mt-5 max-w-md text-lg text-gris-tinta/70">
             Pasa tus viejas cintas a digital y vuelve a ver todo lo que
@@ -16,11 +16,11 @@ export function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#calculadora"
-              className="rounded-full bg-azul-principal px-6 py-3 font-bold text-white transition hover:bg-azul-noche"
+              className="rounded-full bg-azul-noche px-6 py-3 font-bold text-white transition hover:opacity-90"
             >
               Calcular mi precio
             </a>
-            <Link href="/como-funciona" className="font-bold text-azul-principal hover:text-azul-noche">
+            <Link href="/como-funciona" className="font-bold text-azul-noche hover:underline">
               Cómo funciona →
             </Link>
           </div>

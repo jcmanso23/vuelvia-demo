@@ -62,7 +62,7 @@ export default function SeguridadPage() {
       <ol className="mt-12 space-y-6">
         {etapas.map((e) => (
           <li key={e.momento} className="flex gap-5 rounded-2xl bg-white p-5">
-            <span className="w-20 shrink-0 text-xs font-bold uppercase tracking-wide text-azul-principal">
+            <span className="w-20 shrink-0 text-xs font-bold uppercase tracking-wide text-azul-noche">
               {e.momento}
             </span>
             <div>
@@ -85,7 +85,7 @@ export default function SeguridadPage() {
       <div className="mt-12 text-center">
         <a
           href="/#calculadora"
-          className="inline-block rounded-full bg-azul-principal px-8 py-4 font-bold text-white transition hover:bg-azul-noche"
+          className="inline-block rounded-full bg-azul-noche px-8 py-4 font-bold text-white transition hover:opacity-90"
         >
           Calcular mi precio
         </a>

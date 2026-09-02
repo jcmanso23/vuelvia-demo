@@ -74,7 +74,7 @@ export default function QueDigitalizamosPage() {
           puedes elegir &ldquo;No lo sé / Tengo varios formatos&rdquo; al
           hacer tu pedido, o escribirnos y te ayudamos a identificarla.
         </p>
-        <Link href="/contacto" className="mt-3 inline-block font-bold text-azul-principal hover:text-azul-noche">
+        <Link href="/contacto" className="mt-3 inline-block font-bold text-azul-noche hover:underline">
           Contactar con Vuelvia →
         </Link>
       </div>
@@ -82,7 +82,7 @@ export default function QueDigitalizamosPage() {
       <div className="mt-12 text-center">
         <Link
           href="/#calculadora"
-          className="inline-block rounded-full bg-azul-principal px-8 py-4 font-bold text-white transition hover:bg-azul-noche"
+          className="inline-block rounded-full bg-azul-noche px-8 py-4 font-bold text-white transition hover:opacity-90"
         >
           Calcular mi precio
         </Link>

@@ -21,7 +21,7 @@ export default function AdminPedidosPage() {
       <div className="mt-6 overflow-x-auto rounded-2xl bg-white">
         <table className="w-full min-w-[720px] text-left text-sm">
           <thead>
-            <tr className="border-b border-black/5 text-gris-tinta/60">
+            <tr className="border-b border-black/5 text-gris-tinta/70">
               <th className="px-4 py-3">Código</th>
               <th className="px-4 py-3">Cliente</th>
               <th className="px-4 py-3">Cintas</th>
@@ -34,7 +34,7 @@ export default function AdminPedidosPage() {
           <tbody>
             {orders.length === 0 && (
               <tr>
-                <td colSpan={7} className="px-4 py-8 text-center text-gris-tinta/50">
+                <td colSpan={7} className="px-4 py-8 text-center text-gris-tinta/70">
                   Todavía no hay pedidos. Se crearán al completar el checkout.
                 </td>
               </tr>
@@ -52,11 +52,11 @@ export default function AdminPedidosPage() {
                     {STATUS_LABELS[o.status]}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-gris-tinta/50">
+                <td className="px-4 py-3 text-gris-tinta/70">
                   {new Date(o.createdAt).toLocaleDateString("es-ES")}
                 </td>
                 <td className="px-4 py-3">
-                  <Link href={`/pedido?code=${o.code}`} className="font-bold text-azul-principal hover:text-azul-noche">
+                  <Link href={`/pedido?code=${o.code}`} className="font-bold text-azul-noche hover:underline">
                     Ver →
                   </Link>
                 </td>

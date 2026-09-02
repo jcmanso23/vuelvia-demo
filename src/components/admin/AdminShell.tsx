@@ -8,6 +8,7 @@ const links = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/pedidos", label: "Pedidos" },
   { href: "/admin/precios", label: "Precios" },
+  { href: "/admin/emails", label: "Emails" },
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
@@ -23,7 +24,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               Panel interno
             </span>
           </div>
-          <Link href="/" className="text-sm font-semibold text-gris-tinta/60 hover:text-azul-principal">
+          <Link href="/" className="text-sm font-semibold text-gris-tinta/70 hover:underline">
             ← Volver a la web
           </Link>
         </div>
@@ -34,8 +35,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
               href={l.href}
               className={`border-b-2 py-3 ${
                 pathname === l.href
-                  ? "border-azul-principal text-azul-principal"
-                  : "border-transparent text-gris-tinta/60 hover:text-gris-tinta"
+                  ? "border-azul-noche text-azul-noche"
+                  : "border-transparent text-gris-tinta/70 hover:text-gris-tinta"
               }`}
             >
               {l.label}

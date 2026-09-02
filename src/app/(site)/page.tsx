@@ -7,6 +7,8 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQ_ITEMS } from "@/lib/faq";
 import { UsbMockup } from "@/components/UsbMockup";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { JsonLd } from "@/components/JsonLd";
+import { SITE_URL } from "@/lib/site";
 
 const pasos = [
   {
@@ -41,6 +43,18 @@ const formatos = [
 export default function Home() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "Vuelvia",
+          url: SITE_URL,
+          description:
+            "Servicio de digitalización de cintas VHS, VHS-C, MiniDV y 8mm con recogida y entrega a domicilio en toda España.",
+          areaServed: "ES",
+          priceRange: "€€",
+        }}
+      />
       <Hero />
       <CalculatorBlock />
 
@@ -49,7 +63,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div>
-              <p className="text-sm font-bold uppercase tracking-wide text-azul-principal">
+              <p className="text-sm font-bold uppercase tracking-wide text-azul-noche">
                 Sabemos lo que llevas dentro de esa caja.
               </p>
               <h2 className="mt-2 font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
@@ -63,7 +77,7 @@ export default function Home() {
               <TrustBadges className="mt-6" />
               <Link
                 href="/seguridad"
-                className="mt-4 inline-block font-bold text-azul-principal hover:text-azul-noche"
+                className="mt-4 inline-block font-bold text-azul-noche hover:underline"
               >
                 Cómo cuidamos tus recuerdos →
               </Link>
@@ -113,7 +127,7 @@ export default function Home() {
               una memoria USB que va siempre incluida, sin coste adicional, y
               que puedes conectar a la tele, al ordenador o a donde quieras.
             </p>
-            <p className="mt-3 text-sm font-semibold text-gris-tinta/60">
+            <p className="mt-3 text-sm font-semibold text-gris-tinta/70">
               ¿Quieres otra copia para regalar a un familiar? Puedes añadirla
               al hacer tu pedido.
             </p>
@@ -138,14 +152,14 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <p className="mt-6 text-center text-sm text-gris-tinta/60">
+          <p className="mt-6 text-center text-sm text-gris-tinta/70">
             Actualmente no digitalizamos formato Beta / Betamax.{" "}
-            <Link href="/contacto" className="font-bold text-azul-principal">
+            <Link href="/contacto" className="font-bold text-azul-noche">
               ¿Tienes Beta? Escríbenos.
             </Link>
           </p>
           <div className="mt-6 text-center">
-            <Link href="/que-digitalizamos" className="font-bold text-azul-principal hover:text-azul-noche">
+            <Link href="/que-digitalizamos" className="font-bold text-azul-noche hover:underline">
               Ver todos los formatos →
             </Link>
           </div>
@@ -166,7 +180,7 @@ export default function Home() {
           <p className="mt-3 font-semibold text-gris-tinta/75">
             Nosotros ponemos la parte técnica. Tú recuperas lo importante.
           </p>
-          <p className="mt-4 text-sm text-gris-tinta/50">
+          <p className="mt-4 text-sm text-gris-tinta/70">
             Las cintas envejecen. Los recuerdos no deberían hacerlo con ellas.
           </p>
         </div>
@@ -178,25 +192,25 @@ export default function Home() {
           <h2 className="font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
             Lo sabes antes de enviarnos nada.
           </h2>
-          <p className="mt-2 text-gris-tinta/60">
+          <p className="mt-2 text-gris-tinta/70">
             Elige cuántas cintas tienes y cómo quieres hacérnoslas llegar. Ese
             será tu precio final.
           </p>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             <div className="rounded-2xl bg-gris-niebla p-6">
-              <p className="text-3xl font-bold text-azul-principal">10 €</p>
+              <p className="text-3xl font-bold text-azul-noche">10 €</p>
               <p className="mt-1 text-sm text-gris-tinta/70">por cinta (1–10)</p>
             </div>
             <div className="rounded-2xl bg-gris-niebla p-6">
-              <p className="text-3xl font-bold text-azul-principal">8 €</p>
+              <p className="text-3xl font-bold text-azul-noche">8 €</p>
               <p className="mt-1 text-sm text-gris-tinta/70">por cinta adicional (11+)</p>
             </div>
             <div className="rounded-2xl bg-gris-niebla p-6">
-              <p className="text-3xl font-bold text-azul-principal">Incluido</p>
+              <p className="text-3xl font-bold text-azul-noche">Incluido</p>
               <p className="mt-1 text-sm text-gris-tinta/70">transporte ida y vuelta</p>
             </div>
           </div>
-          <p className="mt-6 text-sm text-gris-tinta/60">
+          <p className="mt-6 text-sm text-gris-tinta/70">
             Incluye revisión, digitalización completa, tu memoria USB y
             devolución de tus originales, todo a domicilio.
           </p>
@@ -211,7 +225,7 @@ export default function Home() {
           </div>
           <Link
             href="/precios"
-            className="mt-6 inline-block font-bold text-azul-principal hover:text-azul-noche"
+            className="mt-6 inline-block font-bold text-azul-noche hover:underline"
           >
             Ver ejemplos de precio →
           </Link>
@@ -230,7 +244,7 @@ export default function Home() {
             <FAQAccordion items={FAQ_ITEMS.slice(0, 6)} />
           </div>
           <div className="mt-6 text-center">
-            <Link href="/faq" className="font-bold text-azul-principal hover:text-azul-noche">
+            <Link href="/faq" className="font-bold text-azul-noche hover:underline">
               Ver todas las preguntas →
             </Link>
           </div>
@@ -259,7 +273,7 @@ export default function Home() {
             </p>
             <a
               href="#calculadora"
-              className="mt-6 inline-block rounded-full bg-azul-principal px-8 py-4 font-bold text-white transition hover:bg-azul-noche"
+              className="mt-6 inline-block rounded-full bg-azul-noche px-8 py-4 font-bold text-white transition hover:opacity-90"
             >
               Calcular mi precio
             </a>

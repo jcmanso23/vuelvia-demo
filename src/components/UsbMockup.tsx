@@ -9,25 +9,25 @@ export function UsbMockup() {
   return (
     <div className="overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm">
       <div className="flex items-center gap-3 border-b border-black/5 bg-gris-niebla px-5 py-4">
-        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-azul-principal text-white">
+        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-azul-noche text-white">
           🔌
         </span>
         <div>
           <p className="font-bold text-gris-tinta">VUELVIA</p>
-          <p className="text-xs text-gris-tinta/50">Tu memoria USB</p>
+          <p className="text-xs text-gris-tinta/70">Tu memoria USB</p>
         </div>
       </div>
       <ul className="divide-y divide-black/5">
         {archivos.map((nombre) => (
           <li key={nombre} className="flex items-center gap-3 px-5 py-3">
-            <span className="text-azul-principal">
+            <span className="text-azul-noche">
               {nombre.endsWith(".mp4") ? "▶" : "📄"}
             </span>
             <p className="text-sm font-semibold text-gris-tinta">{nombre}</p>
           </li>
         ))}
       </ul>
-      <p className="px-5 pb-4 text-xs text-gris-tinta/40">
+      <p className="px-5 pb-4 text-xs text-gris-tinta/70">
         Cada cinta, un archivo. Si tenía un nombre escrito, lo usamos para el archivo.
       </p>
     </div>

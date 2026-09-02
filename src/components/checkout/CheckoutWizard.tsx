@@ -116,7 +116,7 @@ export function CheckoutWizard() {
   }
 
   if (!config || !pricing) {
-    return <p className="text-center text-gris-tinta/60">Cargando...</p>;
+    return <p className="text-center text-gris-tinta/70">Cargando...</p>;
   }
 
   return (
@@ -130,7 +130,7 @@ export function CheckoutWizard() {
               <h2 className="font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
                 ¿Cuántas cintas tienes?
               </h2>
-              <p className="text-xs text-gris-tinta/50">No hace falta que sean todas del mismo formato.</p>
+              <p className="text-xs text-gris-tinta/70">No hace falta que sean todas del mismo formato.</p>
               <div className="mt-5 flex justify-center">
                 <Counter value={tapes} onChange={setTapes} />
               </div>
@@ -140,17 +140,18 @@ export function CheckoutWizard() {
                 <button
                   type="button"
                   onClick={() => setMethod("correos")}
+                  aria-pressed={method === "correos"}
                   className={`rounded-2xl border-2 p-4 text-left transition ${
                     method === "correos"
-                      ? "border-azul-principal bg-azul-suave/50"
+                      ? "border-azul-noche bg-azul-suave/50"
                       : "border-black/10 hover:border-azul-principal/50"
                   }`}
                 >
-                  <p className="text-xs font-bold uppercase tracking-wide text-azul-principal">
+                  <p className="text-xs font-bold uppercase tracking-wide text-azul-noche">
                     La opción más económica
                   </p>
                   <p className="mt-1 font-bold text-gris-tinta">Las llevo yo</p>
-                  <p className="text-xs text-gris-tinta/50">A un punto de entrega cercano</p>
+                  <p className="text-xs text-gris-tinta/70">A un punto de entrega cercano</p>
                   {dropoffTotal !== null && (
                     <p className="text-sm text-gris-tinta/70">{formatEuros(dropoffTotal)} todo incluido</p>
                   )}
@@ -158,9 +159,10 @@ export function CheckoutWizard() {
                 <button
                   type="button"
                   onClick={() => setMethod("domicilio")}
+                  aria-pressed={method === "domicilio"}
                   className={`rounded-2xl border-2 p-4 text-left transition ${
                     method === "domicilio"
-                      ? "border-azul-principal bg-azul-suave/50"
+                      ? "border-azul-noche bg-azul-suave/50"
                       : "border-black/10 hover:border-azul-principal/50"
                   }`}
                 >
@@ -168,14 +170,14 @@ export function CheckoutWizard() {
                     La opción más cómoda
                   </p>
                   <p className="mt-1 font-bold text-gris-tinta">Venid a recogerlas</p>
-                  <p className="text-xs text-gris-tinta/50">Pasamos por tu domicilio</p>
+                  <p className="text-xs text-gris-tinta/70">Pasamos por tu domicilio</p>
                   {pickupTotal !== null && (
                     <p className="text-sm text-gris-tinta/70">{formatEuros(pickupTotal)} todo incluido</p>
                   )}
                 </button>
               </div>
 
-              <p className="mt-6 rounded-lg bg-gris-niebla px-4 py-3 text-xs text-gris-tinta/60">
+              <p className="mt-6 rounded-lg bg-gris-niebla px-4 py-3 text-xs text-gris-tinta/70">
                 Aceptamos VHS, VHS-C, MiniDV y 8&nbsp;mm. Si no sabes cuál
                 tienes, no pasa nada — no hace falta saberlo para pedir.
               </p>
@@ -197,7 +199,7 @@ export function CheckoutWizard() {
                 <Field label="Localidad" value={customer.city} onChange={(v) => setCustomer({ ...customer, city: v })} />
                 <Field label="Provincia" value={customer.province} onChange={(v) => setCustomer({ ...customer, province: v })} />
               </div>
-              <p className="mt-4 text-xs text-gris-tinta/50">
+              <p className="mt-4 text-xs text-gris-tinta/70">
                 La dirección se usa tanto para la recogida (si la elegiste)
                 como para devolverte tus cintas originales.
               </p>
@@ -222,7 +224,7 @@ export function CheckoutWizard() {
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="font-bold text-gris-tinta">Otra copia para compartir</p>
-                    <p className="text-xs text-gris-tinta/60">
+                    <p className="text-xs text-gris-tinta/70">
                       Tu memoria USB ya va incluida. Si quieres otra para un
                       familiar, la enviamos junto con la tuya.
                     </p>
@@ -236,7 +238,7 @@ export function CheckoutWizard() {
               <h2 className="mt-8 font-[family-name:var(--font-baloo)] text-xl font-bold text-gris-tinta">
                 Todo correcto. Solo falta confirmar.
               </h2>
-              <p className="text-xs text-gris-tinta/50">Revisa que esté todo como quieres antes de pagar.</p>
+              <p className="text-xs text-gris-tinta/70">Revisa que esté todo como quieres antes de pagar.</p>
               <div className="mt-4 space-y-1 text-sm text-gris-tinta/70">
                 <p>
                   {tapes} {tapes === 1 ? "cinta" : "cintas"} ·{" "}
@@ -257,7 +259,7 @@ export function CheckoutWizard() {
                     Modo demostración
                   </span>
                 </p>
-                <p className="mb-3 text-xs text-gris-tinta/60">
+                <p className="mb-3 text-xs text-gris-tinta/70">
                   Este formulario simula el pago para la demo. En producción
                   se procesará de forma segura a través de Stripe — no se
                   realizará ningún cargo real aquí.
@@ -277,11 +279,11 @@ export function CheckoutWizard() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="mt-6 w-full rounded-full bg-azul-principal px-6 py-3.5 font-bold text-white transition hover:bg-azul-noche disabled:opacity-60"
+                className="mt-6 w-full rounded-full bg-azul-noche px-6 py-3.5 font-bold text-white transition hover:opacity-90 disabled:opacity-60"
               >
                 {submitting ? "Procesando…" : `Confirmar pedido · ${formatEuros(pricing.total)}`}
               </button>
-              <p className="mt-3 text-center text-xs text-gris-tinta/50">
+              <p className="mt-3 text-center text-xs text-gris-tinta/70">
                 Pago único. Sin suscripciones ni cargos posteriores salvo
                 que tú autorices expresamente algún cambio.
               </p>
@@ -298,7 +300,7 @@ export function CheckoutWizard() {
                 <button
                   type="button"
                   onClick={goBack}
-                  className="font-bold text-gris-tinta/60 hover:text-gris-tinta"
+                  className="font-bold text-gris-tinta/70 hover:text-gris-tinta"
                 >
                   ← Atrás
                 </button>
@@ -308,7 +310,7 @@ export function CheckoutWizard() {
               <button
                 type="button"
                 onClick={goNext}
-                className="rounded-full bg-azul-principal px-6 py-3 font-bold text-white transition hover:bg-azul-noche"
+                className="rounded-full bg-azul-noche px-6 py-3 font-bold text-white transition hover:opacity-90"
               >
                 Continuar
               </button>
@@ -318,7 +320,7 @@ export function CheckoutWizard() {
             <button
               type="button"
               onClick={goBack}
-              className="mt-4 font-bold text-gris-tinta/60 hover:text-gris-tinta"
+              className="mt-4 font-bold text-gris-tinta/70 hover:text-gris-tinta"
             >
               ← Atrás
             </button>
@@ -363,7 +365,7 @@ function Field({
         value={value}
         placeholder={placeholder}
         onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 font-normal focus:border-azul-principal focus:outline-none"
+        className="mt-1 w-full rounded-lg border border-black/10 px-4 py-2.5 font-normal focus:border-azul-noche focus:outline-none focus:ring-2 focus:ring-azul-principal/30"
       />
     </label>
   );

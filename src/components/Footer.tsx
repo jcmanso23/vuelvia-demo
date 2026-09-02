@@ -47,7 +47,7 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm text-gris-tinta/70">
               {col.links.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-azul-principal">
+                  <Link href={link.href} className="hover:underline">
                     {link.label}
                   </Link>
                 </li>
@@ -56,7 +56,7 @@ export function Footer() {
           </div>
         ))}
       </div>
-      <div className="border-t border-black/5 py-6 text-center text-xs text-gris-tinta/60">
+      <div className="border-t border-black/5 py-6 text-center text-xs text-gris-tinta/70">
         © {new Date().getFullYear()} Vuelvia. Todos los derechos reservados. ·
         Hecho con cariño en Valladolid.
       </div>

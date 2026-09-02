@@ -67,7 +67,7 @@ export default function AdminPreciosPage() {
                 onChange={(e) =>
                   update("usbExtraPrice", e.target.value === "" ? null : Number(e.target.value))
                 }
-                className="mt-1 w-full rounded-lg border border-black/10 px-3 py-2 font-normal focus:border-azul-principal focus:outline-none"
+                className="mt-1 w-full rounded-lg border border-black/10 px-3 py-2 font-normal focus:border-azul-noche focus:outline-none focus:ring-2 focus:ring-azul-principal/30"
               />
             </label>
           </div>
@@ -89,12 +89,12 @@ export default function AdminPreciosPage() {
 
           <button
             onClick={handleSave}
-            className="w-full rounded-full bg-azul-principal px-6 py-3 font-bold text-white hover:bg-azul-noche"
+            className="w-full rounded-full bg-azul-noche px-6 py-3 font-bold text-white hover:opacity-90"
           >
             Guardar cambios
           </button>
           {saved && (
-            <p className="text-center text-sm font-semibold text-azul-principal">
+            <p className="text-center text-sm font-semibold text-azul-noche">
               Guardado. Ya se aplica en toda la web.
             </p>
           )}
@@ -138,7 +138,7 @@ function NumberField({
         type="number"
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
-        className="mt-1 w-full rounded-lg border border-black/10 px-3 py-2 font-normal focus:border-azul-principal focus:outline-none"
+        className="mt-1 w-full rounded-lg border border-black/10 px-3 py-2 font-normal focus:border-azul-noche focus:outline-none focus:ring-2 focus:ring-azul-principal/30"
       />
     </label>
   );

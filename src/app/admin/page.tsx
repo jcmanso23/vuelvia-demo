@@ -38,8 +38,8 @@ export default function AdminDashboardPage() {
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {kpis.map((kpi) => (
           <div key={kpi.label} className="rounded-2xl bg-white p-5">
-            <p className="text-sm font-semibold text-gris-tinta/60">{kpi.label}</p>
-            <p className="mt-1 text-2xl font-bold text-azul-principal">{kpi.value}</p>
+            <p className="text-sm font-semibold text-gris-tinta/70">{kpi.label}</p>
+            <p className="mt-1 text-2xl font-bold text-azul-noche">{kpi.value}</p>
           </div>
         ))}
       </div>

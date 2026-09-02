@@ -51,7 +51,7 @@ export default function PreciosPage() {
             <li>· Devolución de tus originales, a domicilio</li>
             <li>· Transporte incluido en el total</li>
           </ul>
-          <p className="mt-4 text-xs text-gris-tinta/50">
+          <p className="mt-4 text-xs text-gris-tinta/70">
             Extra disponible: otra copia USB adicional (precio a confirmar).
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function PreciosPage() {
           <div className="mt-4 overflow-x-auto rounded-2xl bg-white">
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-black/5 text-gris-tinta/60">
+                <tr className="border-b border-black/5 text-gris-tinta/70">
                   <th className="px-4 py-3 whitespace-nowrap">Cintas</th>
                   <th className="px-4 py-3 whitespace-nowrap">Digitalización</th>
                   <th className="px-4 py-3 whitespace-nowrap">Transporte</th>
@@ -76,13 +76,13 @@ export default function PreciosPage() {
                     <td className="px-4 py-3 whitespace-nowrap font-bold text-gris-tinta">{e.cintas}</td>
                     <td className="px-4 py-3 whitespace-nowrap text-gris-tinta/70">{e.digitalizacion} €</td>
                     <td className="px-4 py-3 whitespace-nowrap text-gris-tinta/70">{e.envio} €</td>
-                    <td className="px-4 py-3 whitespace-nowrap font-bold text-azul-principal">{e.total} €</td>
+                    <td className="px-4 py-3 whitespace-nowrap font-bold text-azul-noche">{e.total} €</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="mt-2 text-center text-xs text-gris-tinta/50">
+          <p className="mt-2 text-center text-xs text-gris-tinta/70">
             Si prefieres que recojamos las cintas en tu domicilio, el
             transporte tiene un coste algo mayor — usa la calculadora de
             arriba para ver tu precio exacto.

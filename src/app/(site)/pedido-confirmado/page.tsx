@@ -29,14 +29,14 @@ function Confirmation() {
   }, [code]);
 
   if (order === undefined) {
-    return <p className="text-center text-gris-tinta/60">Cargando…</p>;
+    return <p className="text-center text-gris-tinta/70">Cargando…</p>;
   }
 
   if (!order) {
     return (
       <div className="text-center">
         <p className="text-gris-tinta/70">No hemos encontrado ese pedido.</p>
-        <Link href="/digitalizar" className="mt-4 inline-block font-bold text-azul-principal">
+        <Link href="/digitalizar" className="mt-4 inline-block font-bold text-azul-noche">
           Hacer un pedido →
         </Link>
       </div>
@@ -56,8 +56,8 @@ function Confirmation() {
       </div>
 
       <div className="mt-8 rounded-2xl bg-white p-6 text-center">
-        <p className="text-sm font-bold text-gris-tinta/60">Tu pedido</p>
-        <p className="mt-1 text-2xl font-bold text-azul-principal">{order.code}</p>
+        <p className="text-sm font-bold text-gris-tinta/70">Tu pedido</p>
+        <p className="mt-1 text-2xl font-bold text-azul-noche">{order.code}</p>
         <p className="mt-2 text-sm text-gris-tinta/70">
           {order.tapeCount} {order.tapeCount === 1 ? "cinta" : "cintas"} · Total pagado{" "}
           {formatEuros(order.pricing.total)}
@@ -65,7 +65,7 @@ function Confirmation() {
         <p className="mt-1 text-sm font-semibold text-gris-tinta">
           Elegiste: {order.inboundMethod === "correos" ? "Las llevo yo" : "Venid a recogerlas"}
         </p>
-        <p className="mt-3 text-xs text-gris-tinta/50">
+        <p className="mt-3 text-xs text-gris-tinta/70">
           Cuando terminemos, te devolveremos tus cintas originales junto con
           tu memoria USB, todo a tu domicilio.
         </p>
@@ -74,13 +74,13 @@ function Confirmation() {
       <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
         <button
           onClick={() => setShowInstructions((v) => !v)}
-          className="rounded-full border-2 border-azul-principal px-6 py-3 font-bold text-azul-principal hover:bg-azul-suave/40"
+          className="rounded-full border-2 border-azul-noche px-6 py-3 font-bold text-azul-noche hover:bg-azul-suave/40"
         >
           Ver cómo prepararlas
         </button>
         <Link
           href={`/pedido?code=${order.code}`}
-          className="rounded-full bg-azul-principal px-6 py-3 text-center font-bold text-white hover:bg-azul-noche"
+          className="rounded-full bg-azul-noche px-6 py-3 text-center font-bold text-white hover:opacity-90"
         >
           Ver mi pedido
         </Link>
@@ -92,7 +92,7 @@ function Confirmation() {
           <ol className="mt-3 space-y-2 text-sm text-gris-tinta/70">
             {embalaje.map((paso, i) => (
               <li key={paso} className="flex gap-2">
-                <span className="font-bold text-azul-principal">{i + 1}.</span>
+                <span className="font-bold text-azul-noche">{i + 1}.</span>
                 {paso}
               </li>
             ))}
@@ -106,7 +106,7 @@ function Confirmation() {
 export default function PedidoConfirmadoPage() {
   return (
     <div className="mx-auto max-w-lg px-6 py-16">
-      <Suspense fallback={<p className="text-center text-gris-tinta/60">Cargando…</p>}>
+      <Suspense fallback={<p className="text-center text-gris-tinta/70">Cargando…</p>}>
         <Confirmation />
       </Suspense>
     </div>
