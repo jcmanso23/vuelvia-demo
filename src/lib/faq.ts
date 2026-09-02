@@ -23,7 +23,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "¿Cómo recibo mis vídeos?",
     answer:
-      "En cuanto terminamos, te enviamos un enlace privado para ver y descargar tus vídeos. Si quieres tenerlos también en una memoria USB, puedes añadirla como extra.",
+      "En una memoria USB, siempre incluida en el precio. Te la enviamos junto con tus cintas originales cuando terminamos.",
   },
   {
     question: "¿Qué pasa si está rota?",
@@ -55,13 +55,13 @@ export const FAQ_ITEMS: FAQItem[] = [
     answer: "A tu domicilio. La vuelta está incluida en el precio que ves al contratar.",
   },
   {
-    question: "¿Puedo pedir una USB?",
+    question: "¿Puedo pedir una copia USB adicional?",
     answer:
-      "Sí. La descarga está incluida siempre, pero puedes añadir una memoria USB y te la enviaremos junto con tus cintas originales.",
+      "Sí, como extra. La primera memoria USB con tus vídeos va siempre incluida; si quieres otra para regalar o compartir con otro familiar, puedes añadirla.",
   },
   {
-    question: "¿Cuánto tiempo guardáis mis vídeos?",
+    question: "¿Guardáis una copia de mis vídeos?",
     answer:
-      "Conservamos una copia temporal durante 7 días después de la entrega, por si necesitas volver a descargarlos. Después la eliminamos.",
+      "Sí, conservamos una copia temporal durante 7 días después de la entrega, por si hay algún problema con tu memoria USB. Después la eliminamos.",
   },
 ];

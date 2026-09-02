@@ -115,8 +115,8 @@ export function CalculatorBlock() {
             Continuar con {tapes} {tapes === 1 ? "cinta" : "cintas"}
           </Link>
           <p className="mt-3 text-center text-xs text-gris-tinta/50">
-            Cuando estén listos, te enviaremos un enlace para descargar tus
-            vídeos. Y tus cintas originales volverán a casa.
+            Tus vídeos y tus cintas originales vuelven juntos a casa, en una
+            memoria USB lista para reproducir.
           </p>
         </div>
       </div>

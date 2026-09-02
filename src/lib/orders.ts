@@ -78,8 +78,8 @@ export const STATUS_MESSAGES: Record<PublicStatus, string> = {
   recibidas: "Han llegado bien y ya las hemos registrado.",
   "en-revision": "Estamos comprobando cada cinta antes de empezar.",
   "en-digitalizacion": "Tus cintas están pasando a digital.",
-  listas: "Tus vídeos ya están listos para ver y descargar.",
-  enviadas: "Tus cintas originales ya están de camino.",
+  listas: "Tu memoria USB ya está preparada con todos tus vídeos.",
+  enviadas: "Tus cintas y tu memoria USB ya están de camino a casa.",
   entregado: "Gracias por confiar en Vuelvia.",
 };
 

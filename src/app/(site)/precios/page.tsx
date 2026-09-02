@@ -47,12 +47,12 @@ export default function PreciosPage() {
           <ul className="mt-3 grid gap-2 text-sm text-gris-tinta/70 sm:grid-cols-2">
             <li>· Revisión de cada cinta</li>
             <li>· Digitalización completa</li>
-            <li>· Enlace de descarga de tus vídeos</li>
-            <li>· Devolución de tus originales</li>
+            <li>· Tu memoria USB con los vídeos</li>
+            <li>· Devolución de tus originales, a domicilio</li>
             <li>· Transporte incluido en el total</li>
           </ul>
           <p className="mt-4 text-xs text-gris-tinta/50">
-            Extra disponible: copia en memoria USB (precio a confirmar).
+            Extra disponible: otra copia USB adicional (precio a confirmar).
           </p>
         </div>
 

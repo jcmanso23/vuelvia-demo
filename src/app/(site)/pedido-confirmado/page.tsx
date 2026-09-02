@@ -66,8 +66,8 @@ function Confirmation() {
           Elegiste: {order.inboundMethod === "correos" ? "Las llevo yo" : "Venid a recogerlas"}
         </p>
         <p className="mt-3 text-xs text-gris-tinta/50">
-          Cuando terminemos, te avisaremos por email con tu enlace de
-          descarga. Tus cintas originales volverán a tu domicilio.
+          Cuando terminemos, te devolveremos tus cintas originales junto con
+          tu memoria USB, todo a tu domicilio.
         </p>
       </div>
 

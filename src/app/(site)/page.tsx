@@ -5,7 +5,7 @@ import { CalculatorBlock } from "@/components/CalculatorBlock";
 import { TrustBadges } from "@/components/TrustBadges";
 import { FAQAccordion } from "@/components/FAQAccordion";
 import { FAQ_ITEMS } from "@/lib/faq";
-import { DownloadMockup } from "@/components/DownloadMockup";
+import { UsbMockup } from "@/components/UsbMockup";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 
 const pasos = [
@@ -27,7 +27,7 @@ const pasos = [
   {
     numero: "4",
     titulo: "Vuelven a casa",
-    descripcion: "Descargas tus vídeos y tus cintas originales vuelven a tu domicilio.",
+    descripcion: "Tus cintas originales y tu memoria USB con los vídeos llegan juntas a tu domicilio.",
   },
 ];
 
@@ -101,24 +101,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Resultado: la descarga */}
+      {/* Resultado: la memoria USB */}
       <section className="py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 md:grid-cols-2">
           <div>
             <h2 className="font-[family-name:var(--font-baloo)] text-3xl font-bold text-gris-tinta">
-              Tus vídeos vuelven antes que tus cintas.
+              Tus vídeos, listos para ver donde quieras.
             </h2>
             <p className="mt-4 text-gris-tinta/75">
-              En cuanto terminamos, te enviamos un enlace privado para verlos
-              y descargarlos. No hace falta esperar a que el paquete de
-              vuelta llegue a casa.
+              Cada cinta se convierte en un archivo de vídeo. Todos juntos en
+              una memoria USB que va siempre incluida, sin coste adicional, y
+              que puedes conectar a la tele, al ordenador o a donde quieras.
             </p>
             <p className="mt-3 text-sm font-semibold text-gris-tinta/60">
-              ¿Los quieres también en una memoria USB? Puedes añadirla al
-              pedido y te la enviaremos con tus cintas.
+              ¿Quieres otra copia para regalar a un familiar? Puedes añadirla
+              al hacer tu pedido.
             </p>
           </div>
-          <DownloadMockup />
+          <UsbMockup />
         </div>
       </section>
 
@@ -197,8 +197,8 @@ export default function Home() {
             </div>
           </div>
           <p className="mt-6 text-sm text-gris-tinta/60">
-            Incluye revisión, digitalización completa, enlace de descarga y
-            devolución de tus originales.
+            Incluye revisión, digitalización completa, tu memoria USB y
+            devolución de tus originales, todo a domicilio.
           </p>
           <div className="mt-6 rounded-2xl bg-azul-suave/50 p-5">
             <p className="font-bold text-gris-tinta">

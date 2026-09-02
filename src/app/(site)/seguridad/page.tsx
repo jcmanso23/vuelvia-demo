@@ -24,8 +24,8 @@ const etapas = [
   },
   {
     momento: "Al terminar",
-    titulo: "Los vídeos por un lado. Los originales de vuelta.",
-    texto: "Recibes tu enlace de descarga y preparamos tus cintas para regresar a casa.",
+    titulo: "Todo vuelve junto a casa",
+    texto: "Tus cintas originales y tu memoria USB con los vídeos llegan juntas a tu domicilio.",
   },
 ];
 

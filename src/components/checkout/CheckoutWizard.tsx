@@ -221,10 +221,10 @@ export function CheckoutWizard() {
                     />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="font-bold text-gris-tinta">También en memoria USB</p>
+                    <p className="font-bold text-gris-tinta">Otra copia para compartir</p>
                     <p className="text-xs text-gris-tinta/60">
-                      Además de la descarga, te enviamos una copia física
-                      junto con tus cintas.
+                      Tu memoria USB ya va incluida. Si quieres otra para un
+                      familiar, la enviamos junto con la tuya.
                     </p>
                   </div>
                 </div>

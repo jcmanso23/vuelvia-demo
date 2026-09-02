@@ -43,13 +43,13 @@ const pasos = [
   },
   {
     numero: "7",
-    titulo: "Tus vídeos están listos",
-    descripcion: "Te enviamos un enlace privado para verlos y descargarlos.",
+    titulo: "Preparamos tu memoria USB",
+    descripcion: "Todos tus vídeos, en una memoria USB incluida en el precio.",
   },
   {
     numero: "8",
-    titulo: "Las cintas vuelven a casa",
-    descripcion: "Te devolvemos todos los originales a tu domicilio.",
+    titulo: "Todo vuelve a casa",
+    descripcion: "Te devolvemos tus cintas originales y tu memoria USB, a domicilio.",
   },
 ];
 

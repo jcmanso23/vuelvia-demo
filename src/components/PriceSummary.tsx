@@ -29,16 +29,16 @@ export function PriceSummary({
         </li>
         <li className="flex items-center gap-2">
           <span className="text-azul-principal">✓</span>
-          Devolución a tu domicilio
+          Tus vídeos en memoria USB
         </li>
         <li className="flex items-center gap-2">
           <span className="text-azul-principal">✓</span>
-          Descarga de tus vídeos
+          Devolución a tu domicilio
         </li>
         {!!usbCopies && usbCopies > 0 && (
           <li className="flex items-center justify-between gap-2 border-t border-black/5 pt-1.5">
             <span>
-              <span className="text-azul-principal">✓</span> Copia USB adicional × {usbCopies}
+              <span className="text-azul-principal">✓</span> Copia USB extra × {usbCopies}
             </span>
             <span className="font-semibold text-gris-tinta">
               {usbExtra && usbExtra > 0 ? formatEuros(usbExtra) : "A confirmar"}
